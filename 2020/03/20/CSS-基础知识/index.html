@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>CSS基础知识 | 青空</title><meta name="description" content="CSS基础知识"><meta name="keywords" content="CSS"><meta name="author" content="青空"><meta name="copyright" content="青空"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/blog/favicon.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="CSS基础知识"><meta name="twitter:description" content="CSS基础知识"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png"><meta property="og:type" content="article"><meta property="og:title" content="CSS基础知识"><meta property="og:url" content="https://gitee.com/AIR-ZRB/blog/2020/03/20/CSS-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"><meta property="og:site_name" content="青空"><meta property="og:description" content="CSS基础知识"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://gitee.com/AIR-ZRB/blog/2020/03/20/CSS-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"><link rel="next" title="grid布局和flex布局" href="https://gitee.com/AIR-ZRB/blog/2020/03/19/CSS-Grid%E5%B8%83%E5%B1%80%E5%92%8CFlex%E5%B8%83%E5%B1%80/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: false,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.0"></head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/blog/">青空</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> List</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/blog/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/blog/movies/"><i class="fa-fw fa fa-film"></i><span> Movie</span></a></li></ul></div></div></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/blog/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length_num">25</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/blog/tags/"><div class="headline">Tags</div><div class="length_num">19</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/blog/categories/"><div class="headline">Categories</div><div class="length_num">11</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> List</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/blog/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/blog/movies/"><i class="fa-fw fa fa-film"></i><span> Movie</span></a></li></ul></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">Catalog</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#CSS基础知识"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">CSS基础知识</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#层叠上下文"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">层叠上下文</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#层叠上下文-Stacking-Context"><span class="toc_mobile_items-number">1.1.1.</span> <span class="toc_mobile_items-text">层叠上下文(Stacking Context)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#层叠等级-Stacking-Level"><span class="toc_mobile_items-number">1.1.2.</span> <span class="toc_mobile_items-text">层叠等级(Stacking Level)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#z-index"><span class="toc_mobile_items-number">1.1.3.</span> <span class="toc_mobile_items-text">z-index</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#层叠顺序-Stacking-Order"><span class="toc_mobile_items-number">1.1.4.</span> <span class="toc_mobile_items-text">层叠顺序(Stacking Order)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#BFC-IFC"><span class="toc_mobile_items-number">1.2.</span> <span class="toc_mobile_items-text">BFC&#x2F;IFC</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#什么是FC-Formatting-Context"><span class="toc_mobile_items-number">1.2.1.</span> <span class="toc_mobile_items-text">什么是FC(Formatting Context)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#BFC-Block-Formatting-Context"><span class="toc_mobile_items-number">1.2.1.1.</span> <span class="toc_mobile_items-text">BFC(Block Formatting Context)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#IFC-Inline-Formatting-Context"><span class="toc_mobile_items-number">1.2.1.2.</span> <span class="toc_mobile_items-text">IFC(Inline Formatting Context)</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#让元素水平且垂直居中的几种方式"><span class="toc_mobile_items-number">1.3.</span> <span class="toc_mobile_items-text">让元素水平且垂直居中的几种方式</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#适用于父元素是body"><span class="toc_mobile_items-number">1.3.1.</span> <span class="toc_mobile_items-text">适用于父元素是body</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#适用于父元素是指定盒子的"><span class="toc_mobile_items-number">1.3.2.</span> <span class="toc_mobile_items-text">适用于父元素是指定盒子的</span></a></li></ol></li></ol></li></ol></div></div></div><div id="body-wrap"><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS基础知识"><span class="toc-number">1.</span> <span class="toc-text">CSS基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#层叠上下文"><span class="toc-number">1.1.</span> <span class="toc-text">层叠上下文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#层叠上下文-Stacking-Context"><span class="toc-number">1.1.1.</span> <span class="toc-text">层叠上下文(Stacking Context)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#层叠等级-Stacking-Level"><span class="toc-number">1.1.2.</span> <span class="toc-text">层叠等级(Stacking Level)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#z-index"><span class="toc-number">1.1.3.</span> <span class="toc-text">z-index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#层叠顺序-Stacking-Order"><span class="toc-number">1.1.4.</span> <span class="toc-text">层叠顺序(Stacking Order)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BFC-IFC"><span class="toc-number">1.2.</span> <span class="toc-text">BFC&#x2F;IFC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是FC-Formatting-Context"><span class="toc-number">1.2.1.</span> <span class="toc-text">什么是FC(Formatting Context)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BFC-Block-Formatting-Context"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">BFC(Block Formatting Context)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IFC-Inline-Formatting-Context"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">IFC(Inline Formatting Context)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#让元素水平且垂直居中的几种方式"><span class="toc-number">1.3.</span> <span class="toc-text">让元素水平且垂直居中的几种方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#适用于父元素是body"><span class="toc-number">1.3.1.</span> <span class="toc-text">适用于父元素是body</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#适用于父元素是指定盒子的"><span class="toc-number">1.3.2.</span> <span class="toc-text">适用于父元素是指定盒子的</span></a></li></ol></li></ol></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png)"><div id="post-info"><div id="post-title"><div class="posttitle">CSS基础知识</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> Created 2020-03-20<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> Updated 2020-03-20</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/blog/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>Post View:</span><span id="busuanzi_value_page_pv"></span></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="CSS基础知识"><a href="#CSS基础知识" class="headerlink" title="CSS基础知识"></a>CSS基础知识</h1><h2 id="层叠上下文"><a href="#层叠上下文" class="headerlink" title="层叠上下文"></a>层叠上下文</h2><p>在CSS2.1规范中，每个盒模型的位置是三维的，分别是平面画布上的x轴，y轴以及表示层叠的z轴。层叠上下文即元素在某个层级上z轴方向的排列关系。</p>
+<p>那么这里有几个重要的概念：层叠上下文 (堆叠上下文, Stacking Context)、层叠等级 (层叠水平, Stacking Level)、层叠顺序 (层叠次序, 堆叠顺序, Stacking Order)、z-index。</p>
+<h3 id="层叠上下文-Stacking-Context"><a href="#层叠上下文-Stacking-Context" class="headerlink" title="层叠上下文(Stacking Context)"></a>层叠上下文(Stacking Context)</h3><p>简单来说就是文档的元素的一层叠一层的，那谁是显示在最上面的元素呢？</p>
+<p>z-index的默认值是auto</p>
+<ul>
+<li>形成层叠上下文的方法有：<ul>
+<li>根元素 <code>&lt;html&gt;&lt;/html&gt;</code></li>
+<li>position值为 absolute | relative | fixed | sticky，且 z-index值不为 auto</li>
+<li>z-index 值不为 auto 的flex元素，即：父元素 display:flex|inline-flex</li>
+<li>opacity 属性值小于 1 的元素</li>
+<li>transform 属性值不为 none的元素</li>
+<li>mix-blend-mode 属性值不为 normal 的元素</li>
+<li>filter、 perspective、 clip-path、 mask、 mask-image、 mask-border、 motion-path 值不为none 的元素</li>
+<li>perspective 值不为 none 的元素</li>
+<li>isolation 属性被设置为 isolate 的元素</li>
+<li>will-change 中指定了任意 CSS 属性，即便你没有直接指定这些属性的值</li>
+</ul>
+</li>
+</ul>
+<h3 id="层叠等级-Stacking-Level"><a href="#层叠等级-Stacking-Level" class="headerlink" title="层叠等级(Stacking Level)"></a>层叠等级(Stacking Level)</h3><p>层叠等级决定了在同一个层叠上下文Z轴的位置</p>
+<ul>
+<li>普通元素的层叠优先与在层叠上下文的元素</li>
+<li>层叠等级的比较只有在同一个层叠上下文元素中才有意义</li>
+<li>层叠等级是描述该元素在Z轴上的位置</li>
+</ul>
+<p>注意：层叠等级并不一定由z-index决定，只有定位的元素的层叠等级才z-index来决定    ，其他类型元素的层叠等级由层叠顺序、他们在HTML中出现的顺序、他们的父级以上元素的层叠等级一同决定</p>
+<h3 id="z-index"><a href="#z-index" class="headerlink" title="z-index"></a>z-index</h3><p>z-index只适用于定位的元素</p>
+<p>元素的 z-index 值只在同一个层叠上下文中有意义。如果父级层叠上下文的层叠等级低于另一个层叠上下文的，那么它 z-index 设的再高也没用。所以如果你遇到 z-index 值设了很大，但是不起作用的话，就去看看它的父级层叠上下文是否被其他层叠上下文盖住了。</p>
+<h3 id="层叠顺序-Stacking-Order"><a href="#层叠顺序-Stacking-Order" class="headerlink" title="层叠顺序(Stacking Order)"></a>层叠顺序(Stacking Order)</h3><p>这里其实是涉及了所谓的层叠水平（stacking level)，有一张图可以很好的诠释：</p>
+<p><a href="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xODcyMDM1OC0xMjlhMmMzMWIyN2Y3YzU1LnBuZw" target="_blank" rel="noopener" data-fancybox="group" data-caption="层叠顺序" class="fancybox"><img alt="层叠顺序" title="层叠顺序" data-src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xODcyMDM1OC0xMjlhMmMzMWIyN2Y3YzU1LnBuZw" class="lazyload"></a></p>
+<ol>
+<li>形成堆叠上下文环境的元素的背景与边框</li>
+<li>拥有负 z-index 的子堆叠上下文元素 （负的越高越堆叠层级越低）</li>
+<li>正常流式布局，非 inline-block，无 position 定位（static除外）的子元素</li>
+<li>无 position 定位（static除外）的 float 浮动元素</li>
+<li>正常流式布局， inline-block元素，无 position 定位（static除外）的子元素（包括 display:table 和 display:inline ）</li>
+<li>拥有 z-index:0 的子堆叠上下文元素</li>
+<li>拥有正 z-index: 的子堆叠上下文元素（正的越低越堆叠层级越低）</li>
+</ol>
+<h2 id="BFC-IFC"><a href="#BFC-IFC" class="headerlink" title="BFC/IFC"></a><a href="https://www.baidu.com/link?url=zXwxJ66l9fhwq_wpvjSeFSxei4PYTb6NKcL6MSU2mdUDWVZHaEv-eRg_TH6rXWyzzXY6OSuN69losiDlgc7u_a&wd=&eqid=80b88b410002f46d000000065e71d848" target="_blank" rel="noopener">BFC/IFC</a></h2><h3 id="什么是FC-Formatting-Context"><a href="#什么是FC-Formatting-Context" class="headerlink" title="什么是FC(Formatting Context)"></a>什么是FC(Formatting Context)</h3><p>他是W3C CSS2.1规范中的一个概念，定义的是页面中的一块区域，并且有一套渲染规则，他决定其子元素将如何定位，以及其他元素的关系和相互作用</p>
+<p>常见的Formatting Context 有：Block Formatting Context(BFC | 块级格式化上下文)和 Inline Formatting Context(IFC |行内格式化上下文) </p>
+<h4 id="BFC-Block-Formatting-Context"><a href="#BFC-Block-Formatting-Context" class="headerlink" title="BFC(Block Formatting Context)"></a>BFC(Block Formatting Context)</h4><p>BFC：块级格式化上下文</p>
+<ol>
+<li>内部的盒子会在垂直方向，一个个的放置</li>
+<li>盒子垂直方向的距离由margin决定，<strong>属于同一个BFC的两个相邻Box的上下margin会发生重叠</strong></li>
+<li>每一个元素的左边，与包括的盒子的左边相接触，即使存在浮动也是如此</li>
+<li>BFC的区域不会与float重叠</li>
+<li>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之也如此</li>
+<li>计算那BFC的高度时，浮动元素也参与计算</li>
+</ol>
+<p>那些元素会产生BFC</p>
+<ol>
+<li>根元素</li>
+<li>float的属性不为none</li>
+<li>position为absolute或fixed</li>
+<li>display为inline-block，table-cell，table-caption，flex，flow-root</li>
+<li>overflow不为visible</li>
+</ol>
+<p>BFC两个功能</p>
+<ol>
+<li>清楚浮动</li>
+<li>自适应两栏布局</li>
+<li>防止垂直margin合并</li>
+</ol>
+<h4 id="IFC-Inline-Formatting-Context"><a href="#IFC-Inline-Formatting-Context" class="headerlink" title="IFC(Inline Formatting Context)"></a>IFC(Inline Formatting Context)</h4><p>IFC：内联格式化上下文</p>
+<p>在页面中，font-size规定的不是字体的高度或宽度，而是这个字体的模板高度</p>
+<blockquote>
+<p>在行内格式化上下文中，框(boxes)一个接一个地水平排列，起点是包含块的顶部。水平方向上的 margin，border 和 padding在框之间得到保留。框在垂直方向上可以以不同的方式对齐：它们的顶部或底部对齐，或根据其中文字的基线对齐。包含那些框的长方形区域，会形成一行，叫做行框。</p>
+</blockquote>
+<h2 id="让元素水平且垂直居中的几种方式"><a href="#让元素水平且垂直居中的几种方式" class="headerlink" title="让元素水平且垂直居中的几种方式"></a>让元素水平且垂直居中的几种方式</h2><h3 id="适用于父元素是body"><a href="#适用于父元素是body" class="headerlink" title="适用于父元素是body"></a>适用于父元素是body</h3><ol>
+<li>上下左右都为0<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.box &#123;</span><br><span class="line">	position: absolute;</span><br><span class="line">    top: 0;</span><br><span class="line">    left: 0;</span><br><span class="line">    right: 0;</span><br><span class="line">    bottom: 0;</span><br><span class="line">    margin: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+<li>减去自身50%的宽高<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.box &#123;</span><br><span class="line">	position: absolute;</span><br><span class="line">    left: 50%;</span><br><span class="line">    top: 50%;</span><br><span class="line">    margin: -50px 0 0 -50px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+</li>
+</ol>
+<h3 id="适用于父元素是指定盒子的"><a href="#适用于父元素是指定盒子的" class="headerlink" title="适用于父元素是指定盒子的"></a>适用于父元素是指定盒子的</h3><p>CSS3的transform方法</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.box &#123;</span><br><span class="line">	margin-left: 50%;</span><br><span class="line">    margin-top: 50%;</span><br><span class="line">    transform: translateX(-50%) translateY(-50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>flex属性</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.box &#123;</span><br><span class="line">	display: flex;</span><br><span class="line">    justify-content: center;</span><br><span class="line">    align-items: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>grid</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.box &#123;</span><br><span class="line">	display: grid;</span><br><span class="line">    justify-items: center;</span><br><span class="line">    align-items: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">青空</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://gitee.com/AIR-ZRB/blog/2020/03/20/CSS-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">https://gitee.com/AIR-ZRB/blog/2020/03/20/CSS-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/CSS/">CSS    </a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-button button--primary button--animated"> <i class="fa fa-qrcode"></i> Donate<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lazyload post-qr-code__img" src="/blog/null" alt="微信"><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lazyload post-qr-code__img" src="/blog/null" alt="支付寶"><div class="post-qr-code__desc">支付寶</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="/blog/2020/03/19/CSS-Grid%E5%B8%83%E5%B1%80%E5%92%8CFlex%E5%B8%83%E5%B1%80/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">Next Post</div><div class="next_info"><span>grid布局和flex布局</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> Recommend</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/blog/2020/03/19/CSS-Grid布局和Flex布局/" title="grid布局和flex布局"><img class="relatedPosts_cover lazyload"data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-03-19</div><div class="relatedPosts_title">grid布局和flex布局</div></div></a></div></div><div class="clear_both"></div></div></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2020 By 青空</div><div class="framework-info"><span>Driven </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="Read Mode"></i><i class="fa fa-plus" id="font_plus" title="Increase font size"></i><i class="fa fa-minus" id="font_minus" title="Decrease font size"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="Traditional Chinese and Simplified Chinese Conversion" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="Dark Mode"></i></div><div id="rightside-config-show"><div id="rightside_config" title="Setting"><i class="fa fa-cog" aria-hidden="true"></i></div><i class="fa fa-list-ul close" id="mobile-toc-button" title="Table of Contents" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="Back to top" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="/blog/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script></body></html>
