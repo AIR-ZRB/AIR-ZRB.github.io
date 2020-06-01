@@ -1,0 +1,173 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>Nginx-学习笔记 | 青空</title><meta name="description" content="Nginx-学习笔记"><meta name="author" content="青空"><meta name="copyright" content="青空"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/blog/favicon.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Nginx-学习笔记"><meta name="twitter:description" content="Nginx-学习笔记"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png"><meta property="og:type" content="article"><meta property="og:title" content="Nginx-学习笔记"><meta property="og:url" content="https://gitee.com/AIR-ZRB/blog/2020/04/18/Nginx-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><meta property="og:site_name" content="青空"><meta property="og:description" content="Nginx-学习笔记"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://gitee.com/AIR-ZRB/blog/2020/04/18/Nginx-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><link rel="prev" title="移动端" href="https://gitee.com/AIR-ZRB/blog/2020/04/22/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"><link rel="next" title="Mysql-学习笔记" href="https://gitee.com/AIR-ZRB/blog/2020/04/14/Mysql-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: false,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.0"></head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/blog/">青空</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> List</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/blog/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/blog/movies/"><i class="fa-fw fa fa-film"></i><span> Movie</span></a></li></ul></div></div></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/blog/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length_num">41</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/blog/tags/"><div class="headline">Tags</div><div class="length_num">18</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/blog/categories/"><div class="headline">Categories</div><div class="length_num">7</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> List</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/blog/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/blog/movies/"><i class="fa-fw fa fa-film"></i><span> Movie</span></a></li></ul></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">Catalog</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Nginx"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">Nginx</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#基本概念"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">基本概念</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#正向代理"><span class="toc_mobile_items-number">2.1.</span> <span class="toc_mobile_items-text">正向代理</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#反向代理"><span class="toc_mobile_items-number">2.2.</span> <span class="toc_mobile_items-text">反向代理</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#负载均衡"><span class="toc_mobile_items-number">2.3.</span> <span class="toc_mobile_items-text">负载均衡</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#动静分离"><span class="toc_mobile_items-number">2.4.</span> <span class="toc_mobile_items-text">动静分离</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#前后分离"><span class="toc_mobile_items-number">2.5.</span> <span class="toc_mobile_items-text">前后分离</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#高可用"><span class="toc_mobile_items-number">2.6.</span> <span class="toc_mobile_items-text">高可用</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Nginx开始"><span class="toc_mobile_items-number">3.</span> <span class="toc_mobile_items-text">Nginx开始</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Nginx安装"><span class="toc_mobile_items-number">3.1.</span> <span class="toc_mobile_items-text">Nginx安装</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Nginx基本指令"><span class="toc_mobile_items-number">3.2.</span> <span class="toc_mobile_items-text">Nginx基本指令</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Nginx配置文件"><span class="toc_mobile_items-number">3.3.</span> <span class="toc_mobile_items-text">Nginx配置文件</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Nginx代理"><span class="toc_mobile_items-number">4.</span> <span class="toc_mobile_items-text">Nginx代理</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#反向代理实例"><span class="toc_mobile_items-number">4.1.</span> <span class="toc_mobile_items-text">反向代理实例</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#语法"><span class="toc_mobile_items-number">4.1.1.</span> <span class="toc_mobile_items-text">语法</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Nginx负载均衡"><span class="toc_mobile_items-number">5.</span> <span class="toc_mobile_items-text">Nginx负载均衡</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#负载均衡实例"><span class="toc_mobile_items-number">5.1.</span> <span class="toc_mobile_items-text">负载均衡实例</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Nginx分离"><span class="toc_mobile_items-number">6.</span> <span class="toc_mobile_items-text">Nginx分离</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#动静分离实例"><span class="toc_mobile_items-number">6.1.</span> <span class="toc_mobile_items-text">动静分离实例</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Nginx配置高可用集群"><span class="toc_mobile_items-number">7.</span> <span class="toc_mobile_items-text">Nginx配置高可用集群</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Nginx高可用实例"><span class="toc_mobile_items-number">7.1.</span> <span class="toc_mobile_items-text">Nginx高可用实例</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Nginx原理"><span class="toc_mobile_items-number">8.</span> <span class="toc_mobile_items-text">Nginx原理</span></a></li></ol></div></div></div><div id="body-wrap"><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx"><span class="toc-number">1.</span> <span class="toc-text">Nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本概念"><span class="toc-number">2.</span> <span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#正向代理"><span class="toc-number">2.1.</span> <span class="toc-text">正向代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反向代理"><span class="toc-number">2.2.</span> <span class="toc-text">反向代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#负载均衡"><span class="toc-number">2.3.</span> <span class="toc-text">负载均衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动静分离"><span class="toc-number">2.4.</span> <span class="toc-text">动静分离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前后分离"><span class="toc-number">2.5.</span> <span class="toc-text">前后分离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高可用"><span class="toc-number">2.6.</span> <span class="toc-text">高可用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx开始"><span class="toc-number">3.</span> <span class="toc-text">Nginx开始</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx安装"><span class="toc-number">3.1.</span> <span class="toc-text">Nginx安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx基本指令"><span class="toc-number">3.2.</span> <span class="toc-text">Nginx基本指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx配置文件"><span class="toc-number">3.3.</span> <span class="toc-text">Nginx配置文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx代理"><span class="toc-number">4.</span> <span class="toc-text">Nginx代理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#反向代理实例"><span class="toc-number">4.1.</span> <span class="toc-text">反向代理实例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#语法"><span class="toc-number">4.1.1.</span> <span class="toc-text">语法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx负载均衡"><span class="toc-number">5.</span> <span class="toc-text">Nginx负载均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#负载均衡实例"><span class="toc-number">5.1.</span> <span class="toc-text">负载均衡实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx分离"><span class="toc-number">6.</span> <span class="toc-text">Nginx分离</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#动静分离实例"><span class="toc-number">6.1.</span> <span class="toc-text">动静分离实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx配置高可用集群"><span class="toc-number">7.</span> <span class="toc-text">Nginx配置高可用集群</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx高可用实例"><span class="toc-number">7.1.</span> <span class="toc-text">Nginx高可用实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx原理"><span class="toc-number">8.</span> <span class="toc-text">Nginx原理</span></a></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png)"><div id="post-info"><div id="post-title"><div class="posttitle">Nginx-学习笔记</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> Created 2020-04-18<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> Updated 2020-05-09</time><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>Post View:</span><span id="busuanzi_value_page_pv"></span></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><blockquote>
+<p><em>Nginx</em> (engine x) 是一个高性能的<a href="https://baike.baidu.com/item/HTTP" target="_blank" rel="noopener">HTTP</a>和<a href="https://baike.baidu.com/item/反向代理/7793488" target="_blank" rel="noopener">反向代理</a>web服务器，同时也提供了IMAP/POP3/SMTP<a href="https://baike.baidu.com/item/服务/100571" target="_blank" rel="noopener">服务</a>。</p>
+</blockquote>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h3><blockquote>
+<p>正向代理是一个位于客户端和目标服务器之间的代理服务器(中间服务器)。为了从原始服务器取得内容，客户端向代理服务器发送一个请求，并且指定目标服务器，之后代理向目标服务器转交并且将获得的内容返回给客户端。正向代理的情况下客户端必须要进行一些特别的设置才能使用。</p>
+</blockquote>
+<h3 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h3><blockquote>
+<p>反向代理隐藏了真实的服务端，当我们请求 <a href="https://link.zhihu.com/?target=http%3A//www.baidu.com/">w</a>ww.baidu.com 的时候，就像拨打10086一样，背后可能有成千上万台服务器为我们服务，但具体是哪一台，你不知道，也不需要知道，你只需要知道反向代理服务器是谁就好了，<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 就是我们的反向代理服务器，<strong>反向代理服务器会帮我们把请求转发到真实的服务器那里去。Nginx就是性能非常好的反向代理服务器，用来做负载均衡。</strong></p>
+</blockquote>
+<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><blockquote>
+<p><strong>负载均衡（Load Balance），意思是将负载（工作任务，访问请求）进行平衡、分摊到多个操作单元（服务器，组件）上进行执行。是解决高性能，单点故障（高可用），扩展性（水平伸缩）的终极解决方案。</strong></p>
+</blockquote>
+<h3 id="动静分离"><a href="#动静分离" class="headerlink" title="动静分离"></a>动静分离</h3><blockquote>
+<p><strong>动静分离</strong>：动态资源(jsp、ftl、thymeleaf)与静态资源(js、css、img)分开部署。</p>
+</blockquote>
+<h3 id="前后分离"><a href="#前后分离" class="headerlink" title="前后分离"></a>前后分离</h3><blockquote>
+<p><strong>前后分离</strong>：接口与视图分开部署，专业的人做专业的事情。例如：前端使用vue.js ，后端只需要提供接口即可。前端项目与后端项目都是独立部署的。</p>
+</blockquote>
+<h3 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h3><p>为了解决Nginx可能会随时宕机导致服务器无法访问。</p>
+<p>因此出现了配置两台Ngix来放置其中一台宕机导致服务器崩溃。并且对外提供一个虚拟IP地址</p>
+<h2 id="Nginx开始"><a href="#Nginx开始" class="headerlink" title="Nginx开始"></a>Nginx开始</h2><h3 id="Nginx安装"><a href="#Nginx安装" class="headerlink" title="Nginx安装"></a>Nginx安装</h3><p>Windows下只需要再官网下载解压即可使用</p>
+<p>Linux则需要安装一些依赖</p>
+<h3 id="Nginx基本指令"><a href="#Nginx基本指令" class="headerlink" title="Nginx基本指令"></a>Nginx基本指令</h3><p><code>start nginx</code>开启nginx</p>
+<p><code>nginx -s stop</code>：stop表示立即停止nginx,不保存相关信息</p>
+<p> <code>nginx -s quit</code>：quit表示正常退出nginx,并保存相关信息</p>
+<p><code>nginx -s reload</code>：重启(因为改变了配置,需要重启)</p>
+<p>注意：</p>
+<p>windows的Nginx必须去安装目录下打开<code>nginx.exe</code>不然会报错找不到文件</p>
+<h3 id="Nginx配置文件"><a href="#Nginx配置文件" class="headerlink" title="Nginx配置文件"></a>Nginx配置文件</h3><p>虚拟主机的配置server</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">nginx</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;	<span class="comment"># 监听的端口</span></span><br><span class="line">    <span class="attribute">server_name</span> <span class="number">127.0.0.1</span>;	<span class="comment"># 域名可以有多个，用空格隔开</span></span><br><span class="line">    </span><br><span class="line">    <span class="attribute">location</span> /nginxstatus &#123;</span><br><span class="line">        <span class="attribute">index</span> index.html;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://www.baidu.com;	<span class="comment"># 反向代理到此服务器	</span></span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 id="Nginx代理"><a href="#Nginx代理" class="headerlink" title="Nginx代理"></a>Nginx代理</h2><h3 id="反向代理实例"><a href="#反向代理实例" class="headerlink" title="反向代理实例"></a>反向代理实例</h3><p>再<code>conf/nginx.conf</code>中，再HTTP对象中添加此配置</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">nginx</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span>       <span class="number">9000</span>;</span><br><span class="line">        <span class="attribute">server_name</span>  localhost;</span><br><span class="line">        <span class="attribute">location</span> / &#123;</span><br><span class="line">            <span class="attribute">proxy_pass</span> https://www.bilibili.com;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>当我们访问<code>localhost:9000</code>时，会反向代理到<code>bilibili</code>去</p>
+<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><p>再<code>location</code>中又几个参数</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">nginx</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">location</span> [ = | <span class="regexp">~ |</span> <span class="regexp">~* |</span><span class="regexp"> ^~</span> ] uri &#123;</span><br><span class="line">	....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><code>=</code>：用于匹配不含正则表达式的uri，uri和请求字符串要严格匹配</li>
+<li><code>~</code>：用于匹配包含正则表达式的uri，并且区分大小写</li>
+<li><code>~*</code>：用于匹配包含正则表达式的uri，并且不区分大小写</li>
+<li><code>^~</code>：用于匹配不含正则表达式的uri，要求Nginx服务器找到标识uri和请求字符串匹配最高的loaction</li>
+</ul>
+<h2 id="Nginx负载均衡"><a href="#Nginx负载均衡" class="headerlink" title="Nginx负载均衡"></a>Nginx负载均衡</h2><h3 id="负载均衡实例"><a href="#负载均衡实例" class="headerlink" title="负载均衡实例"></a>负载均衡实例</h3><p>再HTTP对象中添加</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">nginx</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">upstream</span> serverName &#123;</span><br><span class="line">    <span class="comment"># ip_hash</span></span><br><span class="line">    <span class="attribute">server</span> ipAddress:port weiht=<span class="number">5</span>;</span><br><span class="line">    <span class="attribute">server</span> ipAddress:port;</span><br><span class="line">    <span class="attribute">server</span> ipAddress:port;</span><br><span class="line">	<span class="comment"># fair</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> localhost;</span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">    	<span class="attribute">proxy_pass</span> http://servarName;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>当访问<code>localhost:80</code>时请求会被轮流分配给已经配置好的服务器</p>
+<p>负载均衡的几种分配服务器的策略</p>
+<ul>
+<li><p><code>轮询</code>：每个请求按时间顺序逐一分配到不同的服务器，默认</p>
+</li>
+<li><p><code>weight</code>：weight代表权重默认为1，权重越高被分配的客户端越多</p>
+</li>
+<li><p><code>ip_hash</code>：每个请求按访问ip的hash结果分配，这样每个访客固定访问一个服务器</p>
+</li>
+<li><p><code>fair</code>：按服务器响应时间来分配请求，响应时间短的有限分配</p>
+</li>
+</ul>
+<h2 id="Nginx分离"><a href="#Nginx分离" class="headerlink" title="Nginx分离"></a>Nginx分离</h2><h3 id="动静分离实例"><a href="#动静分离实例" class="headerlink" title="动静分离实例"></a>动静分离实例</h3><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">nginx</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">location</span> /www/ &#123;</span><br><span class="line">	<span class="attribute">root</span> /data/;</span><br><span class="line">	<span class="attribute">index</span> index.html  index.html</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location /image/ &#123;</span><br><span class="line">    <span class="attribute">root</span> /data/;</span><br><span class="line">    <span class="attribute">autoindex</span> <span class="literal">on</span>;	<span class="comment"># 列出文件夹中的文件</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>设置缓存（需自行百度）</p>
+<h2 id="Nginx配置高可用集群"><a href="#Nginx配置高可用集群" class="headerlink" title="Nginx配置高可用集群"></a>Nginx配置高可用集群</h2><h3 id="Nginx高可用实例"><a href="#Nginx高可用实例" class="headerlink" title="Nginx高可用实例"></a>Nginx高可用实例</h3><ul>
+<li>需要两台服务器</li>
+<li>两台服务器都需要安装Nginx和keepalived</li>
+</ul>
+<h2 id="Nginx原理"><a href="#Nginx原理" class="headerlink" title="Nginx原理"></a>Nginx原理</h2><p>Nginx启动会又一个master主进程和一个或以上的worker进程</p>
+<p>当client发送请求给master，master地下的worker就会争抢任务，抢到任务的worker就会把内容返回给client</p>
+<p>一个master多个worker的好处</p>
+<ul>
+<li>可以使用<code>nginx -s reload</code>热部署，利用nginx进行热部署操作</li>
+<li>每个worker是独立的进程，如果一个worker出现问题，其他worker会继续进行争抢，实现请求过程，不会造成服务器中断</li>
+<li>CPU有多少核就设置多少个worker最为合适</li>
+</ul>
+<p>连接数worker connection</p>
+<ul>
+<li><p>发送请求，占用worker的连接数要么是2个或者4个。一次请求和响应就是2个连接数</p>
+</li>
+<li><p>普通的静态访问最大并发数是 <code>worker_connections * worker_process / 2</code></p>
+</li>
+<li><p>如果是HTTP作为方向代理来说，最大并发数一个是<code>worker_connections * worker_process / 4</code></p>
+</li>
+</ul>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">青空</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://gitee.com/AIR-ZRB/blog/2020/04/18/Nginx-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">https://gitee.com/AIR-ZRB/blog/2020/04/18/Nginx-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-button button--primary button--animated"> <i class="fa fa-qrcode"></i> Donate<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lazyload post-qr-code__img" src="/blog/null" alt="微信"><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lazyload post-qr-code__img" src="/blog/null" alt="支付寶"><div class="post-qr-code__desc">支付寶</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/blog/2020/04/22/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"><img class="prev_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">Previous Post</div><div class="prev_info"><span>移动端</span></div></a></div><div class="next-post pull_right"><a href="/blog/2020/04/14/Mysql-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">Next Post</div><div class="next_info"><span>Mysql-学习笔记</span></div></a></div></nav></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2020 By 青空</div><div class="framework-info"><span>Driven </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="Read Mode"></i><i class="fa fa-plus" id="font_plus" title="Increase font size"></i><i class="fa fa-minus" id="font_minus" title="Decrease font size"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="Traditional Chinese and Simplified Chinese Conversion" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="Dark Mode"></i></div><div id="rightside-config-show"><div id="rightside_config" title="Setting"><i class="fa fa-cog" aria-hidden="true"></i></div><i class="fa fa-list-ul close" id="mobile-toc-button" title="Table of Contents" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="Back to top" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="/blog/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script></body></html>

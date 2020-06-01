@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>HTTP基础知识 | 青空</title><meta name="description" content="HTTP基础知识"><meta name="keywords" content="HTTP"><meta name="author" content="青空"><meta name="copyright" content="青空"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/blog/favicon.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="HTTP基础知识"><meta name="twitter:description" content="HTTP基础知识"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png"><meta property="og:type" content="article"><meta property="og:title" content="HTTP基础知识"><meta property="og:url" content="https://gitee.com/AIR-ZRB/blog/2020/03/22/HTTP-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><meta property="og:site_name" content="青空"><meta property="og:description" content="HTTP基础知识"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://gitee.com/AIR-ZRB/blog/2020/03/22/HTTP-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><link rel="prev" title="Linux基础知识" href="https://gitee.com/AIR-ZRB/blog/2020/03/22/Linux-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><link rel="next" title="CSS基础知识" href="https://gitee.com/AIR-ZRB/blog/2020/03/20/CSS-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: false,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.0"></head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/blog/">青空</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> List</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/blog/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/blog/movies/"><i class="fa-fw fa fa-film"></i><span> Movie</span></a></li></ul></div></div></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/blog/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length_num">41</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/blog/tags/"><div class="headline">Tags</div><div class="length_num">18</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/blog/categories/"><div class="headline">Categories</div><div class="length_num">7</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> List</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/blog/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/blog/movies/"><i class="fa-fw fa fa-film"></i><span> Movie</span></a></li></ul></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">Catalog</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#HTTP"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">HTTP</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#了解网络基础"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">了解网络基础</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#TCP-IP"><span class="toc_mobile_items-number">2.1.</span> <span class="toc_mobile_items-text">TCP&#x2F;IP</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#TCP四层模型"><span class="toc_mobile_items-number">2.1.1.</span> <span class="toc_mobile_items-text">TCP四层模型</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#应用层"><span class="toc_mobile_items-number">2.1.1.1.</span> <span class="toc_mobile_items-text">应用层</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#传输层"><span class="toc_mobile_items-number">2.1.1.2.</span> <span class="toc_mobile_items-text">传输层</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#网络层"><span class="toc_mobile_items-number">2.1.1.3.</span> <span class="toc_mobile_items-text">网络层</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#链路层"><span class="toc_mobile_items-number">2.1.1.4.</span> <span class="toc_mobile_items-text">链路层</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#TCP三次握手"><span class="toc_mobile_items-number">2.1.2.</span> <span class="toc_mobile_items-text">TCP三次握手</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#TCP四次挥手"><span class="toc_mobile_items-number">2.1.3.</span> <span class="toc_mobile_items-text">TCP四次挥手</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#DNS"><span class="toc_mobile_items-number">2.2.</span> <span class="toc_mobile_items-text">DNS</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#DHCP"><span class="toc_mobile_items-number">2.3.</span> <span class="toc_mobile_items-text">DHCP</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#当输入了一个网址发生什么"><span class="toc_mobile_items-number">2.3.1.</span> <span class="toc_mobile_items-text">当输入了一个网址发生什么</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#URI和URL"><span class="toc_mobile_items-number">2.4.</span> <span class="toc_mobile_items-text">URI和URL</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#简单的HTTP协议"><span class="toc_mobile_items-number">3.</span> <span class="toc_mobile_items-text">简单的HTTP协议</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#HTTP协议用于客户端和服务器端之间的通信"><span class="toc_mobile_items-number">3.1.</span> <span class="toc_mobile_items-text">HTTP协议用于客户端和服务器端之间的通信</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#HTTP是不保存状态协议"><span class="toc_mobile_items-number">3.2.</span> <span class="toc_mobile_items-text">HTTP是不保存状态协议</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#告知服务器意图的HTTP方法"><span class="toc_mobile_items-number">3.3.</span> <span class="toc_mobile_items-text">告知服务器意图的HTTP方法</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#GET"><span class="toc_mobile_items-number">3.3.1.</span> <span class="toc_mobile_items-text">GET</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#POST"><span class="toc_mobile_items-number">3.3.2.</span> <span class="toc_mobile_items-text">POST</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#PUT"><span class="toc_mobile_items-number">3.3.3.</span> <span class="toc_mobile_items-text">PUT</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#HEAD"><span class="toc_mobile_items-number">3.3.4.</span> <span class="toc_mobile_items-text">HEAD</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#DELETE"><span class="toc_mobile_items-number">3.3.5.</span> <span class="toc_mobile_items-text">DELETE</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#OPTIONS"><span class="toc_mobile_items-number">3.3.6.</span> <span class="toc_mobile_items-text">OPTIONS</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#持久连接节省通信量"><span class="toc_mobile_items-number">3.4.</span> <span class="toc_mobile_items-text">持久连接节省通信量</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#持久连接"><span class="toc_mobile_items-number">3.4.1.</span> <span class="toc_mobile_items-text">持久连接</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#使用Cookie的状态管理"><span class="toc_mobile_items-number">3.5.</span> <span class="toc_mobile_items-text">使用Cookie的状态管理</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#HTTP报文内的HTTP信息"><span class="toc_mobile_items-number">4.</span> <span class="toc_mobile_items-text">HTTP报文内的HTTP信息</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#HTTP报文"><span class="toc_mobile_items-number">4.1.</span> <span class="toc_mobile_items-text">HTTP报文</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#请求报文及响应报文的结构"><span class="toc_mobile_items-number">4.2.</span> <span class="toc_mobile_items-text">请求报文及响应报文的结构</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#编码提升传输速率"><span class="toc_mobile_items-number">4.3.</span> <span class="toc_mobile_items-text">编码提升传输速率</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#分割发送的分块传输编码"><span class="toc_mobile_items-number">4.4.</span> <span class="toc_mobile_items-text">分割发送的分块传输编码</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#HTTP-的状态码"><span class="toc_mobile_items-number">5.</span> <span class="toc_mobile_items-text">HTTP 的状态码</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2XX成功"><span class="toc_mobile_items-number">5.1.</span> <span class="toc_mobile_items-text">2XX成功</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3XX重定向"><span class="toc_mobile_items-number">5.2.</span> <span class="toc_mobile_items-text">3XX重定向</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4XX客户端错误"><span class="toc_mobile_items-number">5.3.</span> <span class="toc_mobile_items-text">4XX客户端错误</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#5XX服务端错误"><span class="toc_mobile_items-number">5.4.</span> <span class="toc_mobile_items-text">5XX服务端错误</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#HTTP协作的Web服务器"><span class="toc_mobile_items-number">6.</span> <span class="toc_mobile_items-text">HTTP协作的Web服务器</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#通信数据转发程序-：代理、网关、隧-道"><span class="toc_mobile_items-number">6.1.</span> <span class="toc_mobile_items-text">通信数据转发程序 ：代理、网关、隧 道</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#代理"><span class="toc_mobile_items-number">6.2.</span> <span class="toc_mobile_items-text">代理</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#缓存代理"><span class="toc_mobile_items-number">6.2.1.</span> <span class="toc_mobile_items-text">缓存代理</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#透明代理"><span class="toc_mobile_items-number">6.2.2.</span> <span class="toc_mobile_items-text">透明代理</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#网关"><span class="toc_mobile_items-number">6.3.</span> <span class="toc_mobile_items-text">网关</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#隧道"><span class="toc_mobile_items-number">6.4.</span> <span class="toc_mobile_items-text">隧道</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#HTTP首部"><span class="toc_mobile_items-number">7.</span> <span class="toc_mobile_items-text">HTTP首部</span></a></li></ol></div></div></div><div id="body-wrap"><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP"><span class="toc-number">1.</span> <span class="toc-text">HTTP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#了解网络基础"><span class="toc-number">2.</span> <span class="toc-text">了解网络基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP-IP"><span class="toc-number">2.1.</span> <span class="toc-text">TCP&#x2F;IP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP四层模型"><span class="toc-number">2.1.1.</span> <span class="toc-text">TCP四层模型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#应用层"><span class="toc-number">2.1.1.1.</span> <span class="toc-text">应用层</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#传输层"><span class="toc-number">2.1.1.2.</span> <span class="toc-text">传输层</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#网络层"><span class="toc-number">2.1.1.3.</span> <span class="toc-text">网络层</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#链路层"><span class="toc-number">2.1.1.4.</span> <span class="toc-text">链路层</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP三次握手"><span class="toc-number">2.1.2.</span> <span class="toc-text">TCP三次握手</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP四次挥手"><span class="toc-number">2.1.3.</span> <span class="toc-text">TCP四次挥手</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS"><span class="toc-number">2.2.</span> <span class="toc-text">DNS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DHCP"><span class="toc-number">2.3.</span> <span class="toc-text">DHCP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#当输入了一个网址发生什么"><span class="toc-number">2.3.1.</span> <span class="toc-text">当输入了一个网址发生什么</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#URI和URL"><span class="toc-number">2.4.</span> <span class="toc-text">URI和URL</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单的HTTP协议"><span class="toc-number">3.</span> <span class="toc-text">简单的HTTP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP协议用于客户端和服务器端之间的通信"><span class="toc-number">3.1.</span> <span class="toc-text">HTTP协议用于客户端和服务器端之间的通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP是不保存状态协议"><span class="toc-number">3.2.</span> <span class="toc-text">HTTP是不保存状态协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#告知服务器意图的HTTP方法"><span class="toc-number">3.3.</span> <span class="toc-text">告知服务器意图的HTTP方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#GET"><span class="toc-number">3.3.1.</span> <span class="toc-text">GET</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#POST"><span class="toc-number">3.3.2.</span> <span class="toc-text">POST</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PUT"><span class="toc-number">3.3.3.</span> <span class="toc-text">PUT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HEAD"><span class="toc-number">3.3.4.</span> <span class="toc-text">HEAD</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DELETE"><span class="toc-number">3.3.5.</span> <span class="toc-text">DELETE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OPTIONS"><span class="toc-number">3.3.6.</span> <span class="toc-text">OPTIONS</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#持久连接节省通信量"><span class="toc-number">3.4.</span> <span class="toc-text">持久连接节省通信量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#持久连接"><span class="toc-number">3.4.1.</span> <span class="toc-text">持久连接</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Cookie的状态管理"><span class="toc-number">3.5.</span> <span class="toc-text">使用Cookie的状态管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP报文内的HTTP信息"><span class="toc-number">4.</span> <span class="toc-text">HTTP报文内的HTTP信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP报文"><span class="toc-number">4.1.</span> <span class="toc-text">HTTP报文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请求报文及响应报文的结构"><span class="toc-number">4.2.</span> <span class="toc-text">请求报文及响应报文的结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编码提升传输速率"><span class="toc-number">4.3.</span> <span class="toc-text">编码提升传输速率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分割发送的分块传输编码"><span class="toc-number">4.4.</span> <span class="toc-text">分割发送的分块传输编码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-的状态码"><span class="toc-number">5.</span> <span class="toc-text">HTTP 的状态码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2XX成功"><span class="toc-number">5.1.</span> <span class="toc-text">2XX成功</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3XX重定向"><span class="toc-number">5.2.</span> <span class="toc-text">3XX重定向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4XX客户端错误"><span class="toc-number">5.3.</span> <span class="toc-text">4XX客户端错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5XX服务端错误"><span class="toc-number">5.4.</span> <span class="toc-text">5XX服务端错误</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP协作的Web服务器"><span class="toc-number">6.</span> <span class="toc-text">HTTP协作的Web服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#通信数据转发程序-：代理、网关、隧-道"><span class="toc-number">6.1.</span> <span class="toc-text">通信数据转发程序 ：代理、网关、隧 道</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代理"><span class="toc-number">6.2.</span> <span class="toc-text">代理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#缓存代理"><span class="toc-number">6.2.1.</span> <span class="toc-text">缓存代理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#透明代理"><span class="toc-number">6.2.2.</span> <span class="toc-text">透明代理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网关"><span class="toc-number">6.3.</span> <span class="toc-text">网关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#隧道"><span class="toc-number">6.4.</span> <span class="toc-text">隧道</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP首部"><span class="toc-number">7.</span> <span class="toc-text">HTTP首部</span></a></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png)"><div id="post-info"><div id="post-title"><div class="posttitle">HTTP基础知识</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> Created 2020-03-22<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> Updated 2020-04-27</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/blog/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>Post View:</span><span id="busuanzi_value_page_pv"></span></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><h2 id="了解网络基础"><a href="#了解网络基础" class="headerlink" title="了解网络基础"></a>了解网络基础</h2><h3 id="TCP-IP"><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h3><p><strong>TCP</strong>参考了<strong>OSI</strong>的七层模型</p>
+<h4 id="TCP四层模型"><a href="#TCP四层模型" class="headerlink" title="TCP四层模型"></a>TCP四层模型</h4><h5 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h5><p>应用层决定了像用户提供应用服务是通信的活动</p>
+<p>TCP/IP协议族内预存了各类通用的应用服务，比如，FTP(File Transfer Protocol，文件传输协议)和DNS(Domain Name System，域名系统)服务就是其中两类</p>
+<p><code>HTTP</code>，<code>DNS</code>，<code>FTP</code>协议也处于该层</p>
+<h5 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h5><p>传输层对上层应用层，提供处于网络连接中的两台计算机之间的数据传输</p>
+<p>在传输层有两个性质不同的协议：<code>TCP</code>（Transmission Control Protocol，传输控制协议）和<code>UDP</code>（Usesr Data Protocol，用户数据报协议）</p>
+<p><code>TCP</code>会三次握手来建立可靠的连接</p>
+<p><code>UDP</code>速度快效率高，但是不可靠（只管发，不管是否接收到）</p>
+<h5 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h5><p><code>IP</code></p>
+<h5 id="链路层"><a href="#链路层" class="headerlink" title="链路层"></a>链路层</h5><p>各种物理通信网络接口</p>
+<h4 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h4><h4 id="TCP四次挥手"><a href="#TCP四次挥手" class="headerlink" title="TCP四次挥手"></a>TCP四次挥手</h4><h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><p><code>DNS</code>（Domain Name System）：域名解析系统</p>
+<p>计算机既可以被赋予IP地址，也可以被赋予主机名和域名，比如<code>www.baidu.com</code></p>
+<p>用户通常使用主机名或域名来访问对方计算机，而不是直接通过IP地址访问，因为与IP地址的一组纯数字相比，用字母配合数字的表示形式来指定计算机名更符合人类的记忆习惯</p>
+<p>但是让计算机去理解名称，相对而言就变得困难了。因为计算机更擅长处理一长串数字</p>
+<p>为了解决上述问题。DNS服务应运而生，DNS协议提供通过域名查找IP地址，或逆向从IP地址反查域名服务</p>
+<h3 id="DHCP"><a href="#DHCP" class="headerlink" title="DHCP"></a>DHCP</h3><p><code>DHCP</code>（动态主机配置协议）是一个局域网的网络协议。指的是由服务器控制一段lP地址范围，客户机登录服务器时就可以自动获得服务器分配的lP地址和子网掩码。</p>
+<h4 id="当输入了一个网址发生什么"><a href="#当输入了一个网址发生什么" class="headerlink" title="当输入了一个网址发生什么"></a>当输入了一个网址发生什么</h4><p>首先先查找本地的host文件，找到域名对应的IP，如果没有的话，则去对应的DNS，把他解析成IP地址</p>
+<h3 id="URI和URL"><a href="#URI和URL" class="headerlink" title="URI和URL"></a>URI和URL</h3><p>与URI（统一资源标识符）相比,我们更熟悉URL（Uniform Resource Loator,统一资源定位符）.URL整数使用Web浏览器等访问Web页面时需要输入的网页地址</p>
+<h2 id="简单的HTTP协议"><a href="#简单的HTTP协议" class="headerlink" title="简单的HTTP协议"></a>简单的HTTP协议</h2><h3 id="HTTP协议用于客户端和服务器端之间的通信"><a href="#HTTP协议用于客户端和服务器端之间的通信" class="headerlink" title="HTTP协议用于客户端和服务器端之间的通信"></a>HTTP协议用于客户端和服务器端之间的通信</h3><p>应用HTTP协议时,必定是一端担任客户端角色,另一端担任服务器角色</p>
+<p>在两台计算机之间使用HTTP协议通信时,在一条通信线路上必定又一端是客户端,另一端是服务器端</p>
+<h3 id="HTTP是不保存状态协议"><a href="#HTTP是不保存状态协议" class="headerlink" title="HTTP是不保存状态协议"></a>HTTP是不保存状态协议</h3><p>HTTP是一种不保存状态,即无状态,即无状态（stateless）协议.HTTP协议自身不对请求和响应之间的通信状态进行保存.也就是说在HTTP这个级别,协议对于发送过的请求或响应都不做持久化处理</p>
+<h3 id="告知服务器意图的HTTP方法"><a href="#告知服务器意图的HTTP方法" class="headerlink" title="告知服务器意图的HTTP方法"></a>告知服务器意图的HTTP方法</h3><h4 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h4><p>GET：获取资源</p>
+<p>GET方法用来请求访问已被URI识别的资源，指定的资源服务器端解析后返回响应内容</p>
+<h4 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h4><p>POST：传输实体主题</p>
+<p>POST方法用来传输实体的主体</p>
+<p>虽然用GET方法也可以传输实体的主体，但一般不用GET方法进行传输，而是POST方法。虽说POST的功能与GET很相似，但POST的主要目的并不是获取响应的主题内容</p>
+<h4 id="PUT"><a href="#PUT" class="headerlink" title="PUT"></a>PUT</h4><p>PUT：传输文件</p>
+<p>PUT方法用来传输文件，就像FTP协议的文件上传一样，要求在请求报文的主体中包含文件内容，然后保存到请求URI指定的位置</p>
+<p>但是鉴于HTTP/1.1的PUT方法自身不带验证机制，任何人都可以上传问价，存在安全性问题，因此一般的Web网站不适用该方法。若配合Web应用程序的验证机制，或架构设计采用</p>
+<h4 id="HEAD"><a href="#HEAD" class="headerlink" title="HEAD"></a>HEAD</h4><p>HEAD：获得报文首部</p>
+<p>HEAD方法和GET方法一样，只是不返回报文主体部分。用于确认URI的有效性及资源更新的日期时间等</p>
+<h4 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h4><p>DELETE：删除文件</p>
+<p>DELETE方法用来删除文件，是与PUT相反的方法。DELETE方法按请求URI删除指定的资源</p>
+<h4 id="OPTIONS"><a href="#OPTIONS" class="headerlink" title="OPTIONS"></a>OPTIONS</h4><p>OPTIONS：询问支持的方法</p>
+<p>OPTIONS方法用来查询针对请求URI指定的资源支持的方法</p>
+<h3 id="持久连接节省通信量"><a href="#持久连接节省通信量" class="headerlink" title="持久连接节省通信量"></a>持久连接节省通信量</h3><p>HTTP协议的初始版本中，每进行一次HTTP通信就要断开一次TCP连接</p>
+<p>以当年的通信情况来说，因为都是些容量很小的文本传输，所以即使这样也没有多大问题。可随着HTTP的普及，文档中包含大量图片的情况多了起来</p>
+<h4 id="持久连接"><a href="#持久连接" class="headerlink" title="持久连接"></a>持久连接</h4><p>为了解决上述TCP连接的问题，HTTP/1.1和一部分的HTTP/1.0想出了持久连接（HTTP Persistent Connections），也称为HTTP keep-alive或HTTP connection reuse的方法。持久连接的特点是，只要任意一端没有明确提出断开连接，则保持TCP连接状态</p>
+<h3 id="使用Cookie的状态管理"><a href="#使用Cookie的状态管理" class="headerlink" title="使用Cookie的状态管理"></a>使用Cookie的状态管理</h3><p>HTTP是无状态协议，它不对之前发生过的请求和响应的状态进行管理。也就是说，无法根据之前的状态进行本次的请求处理</p>
+<p>假设要求登录认证的Web页面本身无法进行状态管理（不记录已登录的状态），那么每次跳转新页面 不是要再次登录，就是要在每次请求报文中附加参数来管理登录状态</p>
+<p>不可否认，无状态协议当然也有它的优点，由于不必保存状态，自然可减少服务器的CPU及内存资源的消耗，从另一侧面来说，也正是因为HTTP协议本身是非常简单的，所以才会被应用在各种场景里</p>
+<p>保留无状态协议这个特征的同时又要解决类似的矛盾问题，于是引入了Cookie技术。Cookie技术通过在请求和响应报文中写入Cookie信息来控制客户端状态</p>
+<p>Cookie会根据从服务器端发送的响应报文内的一个叫做Set-Cookie的首部字段信息，通知客户端保存Cookie。当下次客户端再往该服务器发送请求时，客户端会自动再请求报文中加入Cookie值后发送出去</p>
+<p>服务器端发现客户端发送过来的Cookie后，会去检查究竟是从哪一个客户端发来的连接请求，然后对比服务器上的记录，最后得到之前的状态信息</p>
+<h2 id="HTTP报文内的HTTP信息"><a href="#HTTP报文内的HTTP信息" class="headerlink" title="HTTP报文内的HTTP信息"></a>HTTP报文内的HTTP信息</h2><h3 id="HTTP报文"><a href="#HTTP报文" class="headerlink" title="HTTP报文"></a>HTTP报文</h3><p>用于HTTP协议交互的信息被称为报文</p>
+<p>HTTP报文大致可分为报文首部和报文主体两块，通常并不一定要有报文主体</p>
+<p>报文首部：服务器或客户端需处理的请求响应的内容即属性</p>
+<p>报文主体：应被发送的数据 </p>
+<h3 id="请求报文及响应报文的结构"><a href="#请求报文及响应报文的结构" class="headerlink" title="请求报文及响应报文的结构"></a>请求报文及响应报文的结构</h3><ul>
+<li><p>请求报文</p>
+<ul>
+<li>请求行：包含用于请求的方法，请求URI和HTTP版本</li>
+<li>请求首部字段</li>
+<li>通用首部字段</li>
+<li>实体首部字段</li>
+<li>其他</li>
+</ul>
+</li>
+<li><p>响应报文</p>
+<ul>
+<li>状态行：包含表明响应结果的状态码，原因短语和HTTP版本</li>
+<li>响应首部字段</li>
+<li>通用首部字段</li>
+<li>实体首部字段</li>
+<li>其他</li>
+</ul>
+</li>
+</ul>
+<p>首部字段：包含表示请求和响应的各种条件和属性的各类首部</p>
+<h3 id="编码提升传输速率"><a href="#编码提升传输速率" class="headerlink" title="编码提升传输速率"></a>编码提升传输速率</h3><ul>
+<li>报文（message）</li>
+</ul>
+<p>是HTTP通信的基本单位，由8位字节流（otet sequence，其中octet为8个比特）组成，通过HTTP通信传输</p>
+<ul>
+<li><p>实体（entity）</p>
+<p>作为请求或响应的有效载荷数据（补充项）被传输，其内容由实体首部和实体主体组成</p>
+</li>
+</ul>
+<h3 id="分割发送的分块传输编码"><a href="#分割发送的分块传输编码" class="headerlink" title="分割发送的分块传输编码"></a>分割发送的分块传输编码</h3><p>在HTTP通信过程中，请求的编码实体资源尚未全部传输完成之前，浏览器无法显示请求页面。早传输大容量数据时，通过把数据分割成多块，能够让浏览器逐步显示页面</p>
+<p>这种把实体主体分块的功能称为分块传输编码（Chunked Transfer Coding）</p>
+<h2 id="HTTP-的状态码"><a href="#HTTP-的状态码" class="headerlink" title="HTTP 的状态码"></a>HTTP 的状态码</h2><p>HTTP状态码负责表示客户端HTTP请求返回的结果，标记服务器端的处理是否正常，通知出现的错误等工作</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>类别</th>
+<th>原因短语</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1XX</td>
+<td>Informational（信息性状态码）</td>
+<td>接收的请求正在处理</td>
+</tr>
+<tr>
+<td>2XX</td>
+<td>Success（成功状态码）</td>
+<td>请求正常处理完毕</td>
+</tr>
+<tr>
+<td>3XX</td>
+<td>Redirection（重定向状态码）</td>
+<td>需要进行附加操作以完成请求</td>
+</tr>
+<tr>
+<td>4XX</td>
+<td>Client Error（客户端错误状态码）</td>
+<td>服务器无法处理请求</td>
+</tr>
+<tr>
+<td>5XX</td>
+<td>Server Error（服务器错误状态码）</td>
+<td>服务器处理请求出错</td>
+</tr>
+</tbody></table>
+<p>HTTP状态码多达60多种，但是常用的就14种</p>
+<h3 id="2XX成功"><a href="#2XX成功" class="headerlink" title="2XX成功"></a>2XX成功</h3><ul>
+<li><p>200：表示从客户端发来的请求在服务器端被正常处理了</p>
+</li>
+<li><p>204：该状态码代表服务器接收的请求已成功处理，但在返回的响应报文中不含实体的主体部分。另外，也不允许返回任何实体的主体。比如从浏览器发出请求处理后，返回204响应。那么浏览器显示的页面不发生更新。一般在只需要从客户端往服务器发送信息，而对客户端不需要发送新信息内容的情况下使用</p>
+</li>
+<li><p>206：该状态码表示客户端进行了范围请求，而服务器成功执行了这部分的GET请求</p>
+</li>
+</ul>
+<h3 id="3XX重定向"><a href="#3XX重定向" class="headerlink" title="3XX重定向"></a>3XX重定向</h3><ul>
+<li><p>301：永久性重定向。该状态码表示请求的资源已被分配了新的 URI，以后 应使用资源现在所指的 URI。也就是说，如果已经把资源对应的 URI 保存为书签了，这时应该按 Location 首部字段提示的 URI 重新保存。 </p>
+</li>
+<li><p>302： 临时性重定向。该状态码表示请求的资源已被分配了新的 URI，希望 用户（本次）能使用新的 URI 访问。 </p>
+</li>
+<li><p>303：303 状态码和 302 Found 状态码有着相同的功能，但 303 状态码明确 表示客户端应当采用 GET 方法获取资源。303只能用GET方法来请求</p>
+</li>
+<li><p>304： 该状态码表示客户端发送附带条件的请求时，服务器端允许请求访 问资源，但未满足条件的情况。304 状态码返回时，不包含任何响应 的主体部分。304 虽然被划分在 3XX 类别中，但是和重定向没有关 系。</p>
+</li>
+<li><p>307： 临时重定向</p>
+</li>
+</ul>
+<h3 id="4XX客户端错误"><a href="#4XX客户端错误" class="headerlink" title="4XX客户端错误"></a>4XX客户端错误</h3><ul>
+<li>400：该状态码表示请求报文中存在语法错误。当错误发生时，需修改请求 的内容后再次发送请求</li>
+<li>401：该状态码表示发送的请求需要有通过 HTTP 认证（BASIC 认证、 DIGEST 认证）的认证信息。另外若之前已进行过 1 次请求，则表示 用 户认证失败</li>
+<li>403：该状态码表明对请求资源的访问被服务器拒绝了。服务器端没有必要 给出拒绝的详细理由，但如果想作说明的话，可以在实体的主体部分</li>
+<li>404：该状态码表明服务器上无法找到请求的资源。除此之外，也可以在服 务器端拒绝请求且不想说明理由时使用。 </li>
+</ul>
+<h3 id="5XX服务端错误"><a href="#5XX服务端错误" class="headerlink" title="5XX服务端错误"></a>5XX服务端错误</h3><ul>
+<li>500：该状态码表明服务器端在执行请求时发生了错误。也有可能是 Web 应用存在的 bug 或某些临时的故障。 </li>
+<li>503：该状态码表明服务器暂时处于超负载或正在进行停机维护，现在无法 处理请求。如果事先得知解除以上状况需要的时间，最好写入 RetryAfter 首部字段再返回给客户端。 </li>
+</ul>
+<h2 id="HTTP协作的Web服务器"><a href="#HTTP协作的Web服务器" class="headerlink" title="HTTP协作的Web服务器"></a>HTTP协作的Web服务器</h2><h3 id="通信数据转发程序-：代理、网关、隧-道"><a href="#通信数据转发程序-：代理、网关、隧-道" class="headerlink" title="通信数据转发程序 ：代理、网关、隧 道"></a>通信数据转发程序 ：代理、网关、隧 道</h3><p>HTTP 通信时，除客户端和服务器以外，还有一些用于通信数据转发 的应用程序，例如代理、网关和隧道。它们可以配合服务器工作。<br>这些应用程序和服务器可以将请求转发给通信线路上的下一站服务 器，并且能接收从那台服务器发送的响应再转发给客户端。</p>
+<ul>
+<li>代理<ul>
+<li>代理是一种有转发功能的应用程序，它扮演了位于服务器和客户 端“中间人”的角色，接收由客户端发送的请求并转发给服务器，同时 也接收服务器返回的响应并转发给客户端。</li>
+</ul>
+</li>
+<li>网关<ul>
+<li>网关是转发其他服务器通信数据的服务器，接收从客户端发送来的请 求时，它就像自己拥有资源的源服务器一样对请求进行处理。有时客 户端可能都不会察觉，自己的通信目标是一个网关。</li>
+</ul>
+</li>
+<li>隧道<ul>
+<li>隧道是在相隔甚远的客户端和服务器两者之间进行中转，并保持双方 通信连接的应用程序。</li>
+</ul>
+</li>
+</ul>
+<h3 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h3><p><a href="https://s1.ax1x.com/2020/03/26/GSr4YV.png" target="_blank" rel="noopener" data-fancybox="group" data-caption="GSr4YV.png" class="fancybox"><img alt="GSr4YV.png" title="GSr4YV.png" data-src="https://s1.ax1x.com/2020/03/26/GSr4YV.png" class="lazyload"></a></p>
+<p>代理服务器的基本行为就是接收客户端发送的请求后转发给其他服务 器。代理不改变请求 URI，会直接发送给前方持有资源的目标服务 器。<br>持有资源实体的服务器被称为源服务器。从源服务器返回的响应经过 代理服务器后再传给客户端。</p>
+<p><a href="https://imgchr.com/i/GSsF0A" target="_blank" rel="noopener"><img alt="GSsF0A.png" data-src="https://s1.ax1x.com/2020/03/26/GSsF0A.png" class="lazyload"></a></p>
+<p>图：每次通过代理服务器转发请求或响应时，会追加写入 Via 首 部信息<br>在 HTTP 通信过程中，可级联多台代理服务器。请求和响应的转发会 经过数台类似锁链一样连接起来的代理服务器。转发时，需要附加 Via 首部字段以标记出经过的主机信息。</p>
+<h4 id="缓存代理"><a href="#缓存代理" class="headerlink" title="缓存代理"></a>缓存代理</h4><p>代理转发响应时，缓存代理（Caching Proxy）会预先将资源的副本 （缓存）保存在代理服务器上。<br>当代理再次接收到对相同资源的请求时，就可以不从源服务器那里获 取资源，而是将之前缓存的资源作为响应返回。</p>
+<h4 id="透明代理"><a href="#透明代理" class="headerlink" title="透明代理"></a>透明代理</h4><p>转发请求或响应时，不对报文做任何加工的代理类型被称为透明代理 （Transparent Proxy）。反之，对报文内容进行加工的代理被称为非 透明代理。</p>
+<h3 id="网关"><a href="#网关" class="headerlink" title="网关"></a>网关</h3><p><a href="https://s1.ax1x.com/2020/03/26/GS6Lwj.png" target="_blank" rel="noopener" data-fancybox="group" data-caption="GS6Lwj.png" class="fancybox"><img alt="GS6Lwj.png" title="GS6Lwj.png" data-src="https://s1.ax1x.com/2020/03/26/GS6Lwj.png" class="lazyload"></a></p>
+<p>图：利用网关可以由 HTTP 请求转化为其他协议通信</p>
+<p>网关的工作机制和代理十分相似。而网关能使通信线路上的服务器提 供非 HTTP 协议服务。</p>
+<p>利用网关能提高通信的安全性，因为可以在客户端与网关之间的通信 线路上加密以确保连接的安全。比如，网关可以连接数据库，使用 SQL 语句查询数据。另外，在 Web 购物网站上进行信用卡结算时， 网关可以和信用卡结算系统联动。</p>
+<h3 id="隧道"><a href="#隧道" class="headerlink" title="隧道"></a>隧道</h3><h2 id="HTTP首部"><a href="#HTTP首部" class="headerlink" title="HTTP首部"></a>HTTP首部</h2></div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">青空</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://gitee.com/AIR-ZRB/blog/2020/03/22/HTTP-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">https://gitee.com/AIR-ZRB/blog/2020/03/22/HTTP-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/HTTP/">HTTP    </a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-button button--primary button--animated"> <i class="fa fa-qrcode"></i> Donate<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lazyload post-qr-code__img" src="/blog/null" alt="微信"><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lazyload post-qr-code__img" src="/blog/null" alt="支付寶"><div class="post-qr-code__desc">支付寶</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/blog/2020/03/22/Linux-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><img class="prev_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">Previous Post</div><div class="prev_info"><span>Linux基础知识</span></div></a></div><div class="next-post pull_right"><a href="/blog/2020/03/20/CSS-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">Next Post</div><div class="next_info"><span>CSS基础知识</span></div></a></div></nav></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2020 By 青空</div><div class="framework-info"><span>Driven </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="Read Mode"></i><i class="fa fa-plus" id="font_plus" title="Increase font size"></i><i class="fa fa-minus" id="font_minus" title="Decrease font size"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="Traditional Chinese and Simplified Chinese Conversion" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="Dark Mode"></i></div><div id="rightside-config-show"><div id="rightside_config" title="Setting"><i class="fa fa-cog" aria-hidden="true"></i></div><i class="fa fa-list-ul close" id="mobile-toc-button" title="Table of Contents" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="Back to top" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="/blog/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script></body></html>
