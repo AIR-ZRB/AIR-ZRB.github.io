@@ -246,7 +246,7 @@ function activateLightMode(){
 </li>
 </ol>
 <h2 id="时间戳"><a href="#时间戳" class="headerlink" title="时间戳"></a>时间戳</h2><p>自1970年1月1日到现在的毫秒数</p>
-<h2 id="回流和重绘"><a href="#回流和重绘" class="headerlink" title="回流和重绘"></a>回流和重绘</h2><p><a href="https://segmentfault.com/img/remote/1460000017329983?w=624&h=289" target="_blank" rel="noopener" data-fancybox="group" data-caption="浏览器的渲染过程" class="fancybox"><img alt="浏览器的渲染过程" data-src="https://segmentfault.com/img/remote/1460000017329983?w=624&h=289" class="lazyload" title="浏览器的渲染过程"></a></p>
+<h2 id="回流和重绘"><a href="#回流和重绘" class="headerlink" title="回流和重绘"></a>回流和重绘</h2><p><a href="https://segmentfault.com/img/remote/1460000017329983?w=624&h=289" target="_blank" rel="noopener" data-fancybox="group" data-caption="浏览器的渲染过程" class="fancybox"><img alt="浏览器的渲染过程" title="浏览器的渲染过程" data-src="https://segmentfault.com/img/remote/1460000017329983?w=624&h=289" class="lazyload"></a></p>
 <p>从上面这个图上，我们可以看到，浏览器渲染过程如下：</p>
 <ol>
 <li>解析HTML，生成DOM树，解析CSS，生成CSSOM树</li>
@@ -256,7 +256,7 @@ function activateLightMode(){
 <li>Display:将像素发送给GPU，展示在页面上。（这一步其实还有很多内容，比如会在GPU将多个合成层合并为同一个层，并展示在页面中。而css3硬件加速的原理则是新建合成层</li>
 </ol>
 <p>渲染过程看起来很简单，让我们来具体了解下每一步具体做了什么</p>
-<p><a href="https://segmentfault.com/img/remote/1460000017329984?w=1150&h=537" target="_blank" rel="noopener" data-fancybox="group" data-caption="生成渲染树" class="fancybox"><img alt="生成渲染树" data-src="https://segmentfault.com/img/remote/1460000017329984?w=1150&h=537" class="lazyload" title="生成渲染树"></a></p>
+<p><a href="https://segmentfault.com/img/remote/1460000017329984?w=1150&h=537" target="_blank" rel="noopener" data-fancybox="group" data-caption="生成渲染树" class="fancybox"><img alt="生成渲染树" title="生成渲染树" data-src="https://segmentfault.com/img/remote/1460000017329984?w=1150&h=537" class="lazyload"></a></p>
 <p>为了构建渲染树，浏览器主要完成了以下工作：</p>
 <ol>
 <li>从DOM树的根节点开始遍历每个可见节点。</li>

@@ -230,13 +230,13 @@ function activateLightMode(){
 </ul>
 </li>
 </ul>
-<h3 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h3><p><a href="https://s1.ax1x.com/2020/03/26/GSr4YV.png" target="_blank" rel="noopener" data-fancybox="group" data-caption="GSr4YV.png" class="fancybox"><img alt="GSr4YV.png" data-src="https://s1.ax1x.com/2020/03/26/GSr4YV.png" class="lazyload" title="GSr4YV.png"></a></p>
+<h3 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h3><p><a href="https://s1.ax1x.com/2020/03/26/GSr4YV.png" target="_blank" rel="noopener" data-fancybox="group" data-caption="GSr4YV.png" class="fancybox"><img alt="GSr4YV.png" title="GSr4YV.png" data-src="https://s1.ax1x.com/2020/03/26/GSr4YV.png" class="lazyload"></a></p>
 <p>代理服务器的基本行为就是接收客户端发送的请求后转发给其他服务 器。代理不改变请求 URI，会直接发送给前方持有资源的目标服务 器。<br>持有资源实体的服务器被称为源服务器。从源服务器返回的响应经过 代理服务器后再传给客户端。</p>
 <p><a href="https://imgchr.com/i/GSsF0A" target="_blank" rel="noopener"><img alt="GSsF0A.png" data-src="https://s1.ax1x.com/2020/03/26/GSsF0A.png" class="lazyload"></a></p>
 <p>图：每次通过代理服务器转发请求或响应时，会追加写入 Via 首 部信息<br>在 HTTP 通信过程中，可级联多台代理服务器。请求和响应的转发会 经过数台类似锁链一样连接起来的代理服务器。转发时，需要附加 Via 首部字段以标记出经过的主机信息。</p>
 <h4 id="缓存代理"><a href="#缓存代理" class="headerlink" title="缓存代理"></a>缓存代理</h4><p>代理转发响应时，缓存代理（Caching Proxy）会预先将资源的副本 （缓存）保存在代理服务器上。<br>当代理再次接收到对相同资源的请求时，就可以不从源服务器那里获 取资源，而是将之前缓存的资源作为响应返回。</p>
 <h4 id="透明代理"><a href="#透明代理" class="headerlink" title="透明代理"></a>透明代理</h4><p>转发请求或响应时，不对报文做任何加工的代理类型被称为透明代理 （Transparent Proxy）。反之，对报文内容进行加工的代理被称为非 透明代理。</p>
-<h3 id="网关"><a href="#网关" class="headerlink" title="网关"></a>网关</h3><p><a href="https://s1.ax1x.com/2020/03/26/GS6Lwj.png" target="_blank" rel="noopener" data-fancybox="group" data-caption="GS6Lwj.png" class="fancybox"><img alt="GS6Lwj.png" data-src="https://s1.ax1x.com/2020/03/26/GS6Lwj.png" class="lazyload" title="GS6Lwj.png"></a></p>
+<h3 id="网关"><a href="#网关" class="headerlink" title="网关"></a>网关</h3><p><a href="https://s1.ax1x.com/2020/03/26/GS6Lwj.png" target="_blank" rel="noopener" data-fancybox="group" data-caption="GS6Lwj.png" class="fancybox"><img alt="GS6Lwj.png" title="GS6Lwj.png" data-src="https://s1.ax1x.com/2020/03/26/GS6Lwj.png" class="lazyload"></a></p>
 <p>图：利用网关可以由 HTTP 请求转化为其他协议通信</p>
 <p>网关的工作机制和代理十分相似。而网关能使通信线路上的服务器提 供非 HTTP 协议服务。</p>
 <p>利用网关能提高通信的安全性，因为可以在客户端与网关之间的通信 线路上加密以确保连接的安全。比如，网关可以连接数据库，使用 SQL 语句查询数据。另外，在 Web 购物网站上进行信用卡结算时， 网关可以和信用卡结算系统联动。</p>

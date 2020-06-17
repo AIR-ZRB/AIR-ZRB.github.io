@@ -98,7 +98,7 @@ function activateLightMode(){
 <h3 id="z-index"><a href="#z-index" class="headerlink" title="z-index"></a>z-index</h3><p>z-index只适用于定位的元素</p>
 <p>元素的 z-index 值只在同一个层叠上下文中有意义。如果父级层叠上下文的层叠等级低于另一个层叠上下文的，那么它 z-index 设的再高也没用。所以如果你遇到 z-index 值设了很大，但是不起作用的话，就去看看它的父级层叠上下文是否被其他层叠上下文盖住了。</p>
 <h3 id="层叠顺序-Stacking-Order"><a href="#层叠顺序-Stacking-Order" class="headerlink" title="层叠顺序(Stacking Order)"></a>层叠顺序(Stacking Order)</h3><p>这里其实是涉及了所谓的层叠水平（stacking level)，有一张图可以很好的诠释：</p>
-<p><a href="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xODcyMDM1OC0xMjlhMmMzMWIyN2Y3YzU1LnBuZw" target="_blank" rel="noopener" data-fancybox="group" data-caption="层叠顺序" class="fancybox"><img alt="层叠顺序" data-src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xODcyMDM1OC0xMjlhMmMzMWIyN2Y3YzU1LnBuZw" class="lazyload" title="层叠顺序"></a></p>
+<p><a href="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xODcyMDM1OC0xMjlhMmMzMWIyN2Y3YzU1LnBuZw" target="_blank" rel="noopener" data-fancybox="group" data-caption="层叠顺序" class="fancybox"><img alt="层叠顺序" title="层叠顺序" data-src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xODcyMDM1OC0xMjlhMmMzMWIyN2Y3YzU1LnBuZw" class="lazyload"></a></p>
 <ol>
 <li>形成堆叠上下文环境的元素的背景与边框</li>
 <li>拥有负 z-index 的子堆叠上下文元素 （负的越高越堆叠层级越低）</li>
