@@ -73,7 +73,7 @@ function activateLightMode(){
 <p>在 WebSocket API 中，浏览器和服务器只需要做一个握手的动作，然后，浏览器和服务器之间就形成了一条快速通道。两者之间就直接可以数据互相传送。</p>
 <p>现在，很多网站为了实现推送技术，所用的技术都是 Ajax 轮询。轮询是在特定的的时间间隔（如每1秒），由浏览器对服务器发出HTTP请求，然后由服务器返回最新的数据给客户端的浏览器。这种传统的模式带来很明显的缺点，即浏览器需要不断的向服务器发出请求，然而HTTP请求可能包含较长的头部，其中真正有效的数据可能只是很小的一部分，显然这样会浪费很多的带宽等资源。</p>
 <p>HTML5 定义的 WebSocket 协议，能更好的节省服务器资源和带宽，并且能够更实时地进行通讯。</p>
-<p><a href="http://www.runoob.com/wp-content/uploads/2016/03/ws.png" target="_blank" rel="noopener" data-fancybox="group" data-caption="对比" class="fancybox"><img alt="对比" title="对比" data-src="http://www.runoob.com/wp-content/uploads/2016/03/ws.png" class="lazyload"></a></p>
+<p><a href="http://www.runoob.com/wp-content/uploads/2016/03/ws.png" target="_blank" rel="noopener" data-fancybox="group" data-caption="对比" class="fancybox"><img alt="对比" data-src="http://www.runoob.com/wp-content/uploads/2016/03/ws.png" class="lazyload" title="对比"></a></p>
 <h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><ol>
 <li>首先先<code>new WebSocket</code>实例</li>
 <li>再通过<code>opopen</code>事件来发送消息</li>
