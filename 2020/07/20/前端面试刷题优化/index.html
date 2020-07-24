@@ -1,0 +1,310 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>前端面试刷题优化 | 青空</title><meta name="description" content="前端面试刷题优化"><meta name="author" content="青空"><meta name="copyright" content="青空"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/blog/favicon.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="前端面试刷题优化"><meta name="twitter:description" content="前端面试刷题优化"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png"><meta property="og:type" content="article"><meta property="og:title" content="前端面试刷题优化"><meta property="og:url" content="https://gitee.com/AIR-ZRB/blog/2020/07/20/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E5%88%B7%E9%A2%98%E4%BC%98%E5%8C%96/"><meta property="og:site_name" content="青空"><meta property="og:description" content="前端面试刷题优化"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://gitee.com/AIR-ZRB/blog/2020/07/20/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E5%88%B7%E9%A2%98%E4%BC%98%E5%8C%96/"><link rel="next" title="ReactNative-ReactNavigation" href="https://gitee.com/AIR-ZRB/blog/2020/06/27/ReactNative-ReactNavigation/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: false,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.0"></head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/blog/">青空</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> List</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/blog/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/blog/movies/"><i class="fa-fw fa fa-film"></i><span> Movie</span></a></li></ul></div></div></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/blog/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/blog/archives/"><div class="headline">文章</div><div class="length_num">46</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/blog/tags/"><div class="headline">标签</div><div class="length_num">28</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/blog/categories/"><div class="headline">分类</div><div class="length_num">10</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> List</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/blog/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/blog/movies/"><i class="fa-fw fa fa-film"></i><span> Movie</span></a></li></ul></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#HTML"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">HTML</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#HTML语义化的作用"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">HTML语义化的作用</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#H5的新特性"><span class="toc_mobile_items-number">1.2.</span> <span class="toc_mobile_items-text">H5的新特性</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#localStorage和cookie的区别"><span class="toc_mobile_items-number">1.2.1.</span> <span class="toc_mobile_items-text">localStorage和cookie的区别</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#CSS"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">CSS</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#CSS盒模型"><span class="toc_mobile_items-number">2.1.</span> <span class="toc_mobile_items-text">CSS盒模型</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#那么有没有办法让其进行统一呢"><span class="toc_mobile_items-number">2.1.1.</span> <span class="toc_mobile_items-text">那么有没有办法让其进行统一呢</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#BFC"><span class="toc_mobile_items-number">2.2.</span> <span class="toc_mobile_items-text">BFC</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#选择器"><span class="toc_mobile_items-number">2.3.</span> <span class="toc_mobile_items-text">选择器</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#CSS3有哪些新特性"><span class="toc_mobile_items-number">2.4.</span> <span class="toc_mobile_items-text">CSS3有哪些新特性</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#relative和absolute的区别"><span class="toc_mobile_items-number">2.5.</span> <span class="toc_mobile_items-text">relative和absolute的区别</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Sass是什么"><span class="toc_mobile_items-number">2.6.</span> <span class="toc_mobile_items-text">Sass是什么</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#Sass有什么功能"><span class="toc_mobile_items-number">2.6.1.</span> <span class="toc_mobile_items-text">Sass有什么功能</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#flex，grid布局是什么"><span class="toc_mobile_items-number">2.7.</span> <span class="toc_mobile_items-text">flex，grid布局是什么</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Javascript"><span class="toc_mobile_items-number">3.</span> <span class="toc_mobile_items-text">Javascript</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#闭包"><span class="toc_mobile_items-number">3.1.</span> <span class="toc_mobile_items-text">闭包</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#闭包的作用"><span class="toc_mobile_items-number">3.1.1.</span> <span class="toc_mobile_items-text">闭包的作用</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#原型链"><span class="toc_mobile_items-number">3.2.</span> <span class="toc_mobile_items-text">原型链</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#AJAX是用来做什么的"><span class="toc_mobile_items-number">3.3.</span> <span class="toc_mobile_items-text">AJAX是用来做什么的</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#AJAX有几种请求方式（追问）"><span class="toc_mobile_items-number">3.3.1.</span> <span class="toc_mobile_items-text">AJAX有几种请求方式（追问）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#get和post有什么区别"><span class="toc_mobile_items-number">3.3.2.</span> <span class="toc_mobile_items-text">get和post有什么区别</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#this的指向"><span class="toc_mobile_items-number">3.4.</span> <span class="toc_mobile_items-text">this的指向</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#改变this的指向"><span class="toc_mobile_items-number">3.4.1.</span> <span class="toc_mobile_items-text">改变this的指向</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#call，apply，bind的区别"><span class="toc_mobile_items-number">3.4.2.</span> <span class="toc_mobile_items-text">call，apply，bind的区别</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#兼容性问题"><span class="toc_mobile_items-number">3.5.</span> <span class="toc_mobile_items-text">兼容性问题</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#ES6有哪些新特性"><span class="toc_mobile_items-number">3.6.</span> <span class="toc_mobile_items-text">ES6有哪些新特性</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#let和const和var的区别"><span class="toc_mobile_items-number">3.7.</span> <span class="toc_mobile_items-text">let和const和var的区别</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#事件模型（事件流）"><span class="toc_mobile_items-number">3.8.</span> <span class="toc_mobile_items-text">事件模型（事件流）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#如何解决跨域问题"><span class="toc_mobile_items-number">3.9.</span> <span class="toc_mobile_items-text">如何解决跨域问题</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#JSONP是如何做到跨域"><span class="toc_mobile_items-number">3.9.1.</span> <span class="toc_mobile_items-text">JSONP是如何做到跨域</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#节流防抖"><span class="toc_mobile_items-number">3.10.</span> <span class="toc_mobile_items-text">节流防抖</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#移动端"><span class="toc_mobile_items-number">4.</span> <span class="toc_mobile_items-text">移动端</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#移动端你们一般采用什么布局？移动端设计稿是多大的尺寸？"><span class="toc_mobile_items-number">4.1.</span> <span class="toc_mobile_items-text">移动端你们一般采用什么布局？移动端设计稿是多大的尺寸？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#移动端的适配"><span class="toc_mobile_items-number">4.2.</span> <span class="toc_mobile_items-text">移动端的适配</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#rem和em的区别"><span class="toc_mobile_items-number">4.3.</span> <span class="toc_mobile_items-text">rem和em的区别</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#为什么会有300ms的延迟"><span class="toc_mobile_items-number">4.4.</span> <span class="toc_mobile_items-text">为什么会有300ms的延迟</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#移动端怎么固定横屏显示？"><span class="toc_mobile_items-number">4.5.</span> <span class="toc_mobile_items-text">移动端怎么固定横屏显示？</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Jquery"><span class="toc_mobile_items-number">5.</span> <span class="toc_mobile_items-text">Jquery</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Vue"><span class="toc_mobile_items-number">6.</span> <span class="toc_mobile_items-text">Vue</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Vue第一次渲染会触发哪些生命周期"><span class="toc_mobile_items-number">6.1.</span> <span class="toc_mobile_items-text">Vue第一次渲染会触发哪些生命周期</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Vue中DOM渲染是在那个钩子就已经完成了"><span class="toc_mobile_items-number">6.2.</span> <span class="toc_mobile_items-text">Vue中DOM渲染是在那个钩子就已经完成了</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Vue的生命周期有哪些"><span class="toc_mobile_items-number">6.3.</span> <span class="toc_mobile_items-text">Vue的生命周期有哪些</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Vue中computed和watch"><span class="toc_mobile_items-number">6.4.</span> <span class="toc_mobile_items-text">Vue中computed和watch</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Vue中传递参数"><span class="toc_mobile_items-number">6.5.</span> <span class="toc_mobile_items-text">Vue中传递参数</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#v-if和v-show的区别"><span class="toc_mobile_items-number">6.6.</span> <span class="toc_mobile_items-text">v-if和v-show的区别</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#nextTtck的作用"><span class="toc_mobile_items-number">6.7.</span> <span class="toc_mobile_items-text">nextTtck的作用</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Vue如何让CSS只在当前文件生效"><span class="toc_mobile_items-number">6.8.</span> <span class="toc_mobile_items-text">Vue如何让CSS只在当前文件生效</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Vuex是干嘛的，有哪些主要对象"><span class="toc_mobile_items-number">6.9.</span> <span class="toc_mobile_items-text">Vuex是干嘛的，有哪些主要对象</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML"><span class="toc-number">1.</span> <span class="toc-text">HTML</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML语义化的作用"><span class="toc-number">1.1.</span> <span class="toc-text">HTML语义化的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#H5的新特性"><span class="toc-number">1.2.</span> <span class="toc-text">H5的新特性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#localStorage和cookie的区别"><span class="toc-number">1.2.1.</span> <span class="toc-text">localStorage和cookie的区别</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS"><span class="toc-number">2.</span> <span class="toc-text">CSS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS盒模型"><span class="toc-number">2.1.</span> <span class="toc-text">CSS盒模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#那么有没有办法让其进行统一呢"><span class="toc-number">2.1.1.</span> <span class="toc-text">那么有没有办法让其进行统一呢</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BFC"><span class="toc-number">2.2.</span> <span class="toc-text">BFC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择器"><span class="toc-number">2.3.</span> <span class="toc-text">选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS3有哪些新特性"><span class="toc-number">2.4.</span> <span class="toc-text">CSS3有哪些新特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#relative和absolute的区别"><span class="toc-number">2.5.</span> <span class="toc-text">relative和absolute的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sass是什么"><span class="toc-number">2.6.</span> <span class="toc-text">Sass是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sass有什么功能"><span class="toc-number">2.6.1.</span> <span class="toc-text">Sass有什么功能</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flex，grid布局是什么"><span class="toc-number">2.7.</span> <span class="toc-text">flex，grid布局是什么</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Javascript"><span class="toc-number">3.</span> <span class="toc-text">Javascript</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#闭包"><span class="toc-number">3.1.</span> <span class="toc-text">闭包</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#闭包的作用"><span class="toc-number">3.1.1.</span> <span class="toc-text">闭包的作用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原型链"><span class="toc-number">3.2.</span> <span class="toc-text">原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AJAX是用来做什么的"><span class="toc-number">3.3.</span> <span class="toc-text">AJAX是用来做什么的</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#AJAX有几种请求方式（追问）"><span class="toc-number">3.3.1.</span> <span class="toc-text">AJAX有几种请求方式（追问）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#get和post有什么区别"><span class="toc-number">3.3.2.</span> <span class="toc-text">get和post有什么区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#this的指向"><span class="toc-number">3.4.</span> <span class="toc-text">this的指向</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#改变this的指向"><span class="toc-number">3.4.1.</span> <span class="toc-text">改变this的指向</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#call，apply，bind的区别"><span class="toc-number">3.4.2.</span> <span class="toc-text">call，apply，bind的区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#兼容性问题"><span class="toc-number">3.5.</span> <span class="toc-text">兼容性问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ES6有哪些新特性"><span class="toc-number">3.6.</span> <span class="toc-text">ES6有哪些新特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#let和const和var的区别"><span class="toc-number">3.7.</span> <span class="toc-text">let和const和var的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件模型（事件流）"><span class="toc-number">3.8.</span> <span class="toc-text">事件模型（事件流）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何解决跨域问题"><span class="toc-number">3.9.</span> <span class="toc-text">如何解决跨域问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JSONP是如何做到跨域"><span class="toc-number">3.9.1.</span> <span class="toc-text">JSONP是如何做到跨域</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#节流防抖"><span class="toc-number">3.10.</span> <span class="toc-text">节流防抖</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#移动端"><span class="toc-number">4.</span> <span class="toc-text">移动端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#移动端你们一般采用什么布局？移动端设计稿是多大的尺寸？"><span class="toc-number">4.1.</span> <span class="toc-text">移动端你们一般采用什么布局？移动端设计稿是多大的尺寸？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移动端的适配"><span class="toc-number">4.2.</span> <span class="toc-text">移动端的适配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rem和em的区别"><span class="toc-number">4.3.</span> <span class="toc-text">rem和em的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么会有300ms的延迟"><span class="toc-number">4.4.</span> <span class="toc-text">为什么会有300ms的延迟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移动端怎么固定横屏显示？"><span class="toc-number">4.5.</span> <span class="toc-text">移动端怎么固定横屏显示？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Jquery"><span class="toc-number">5.</span> <span class="toc-text">Jquery</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue"><span class="toc-number">6.</span> <span class="toc-text">Vue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue第一次渲染会触发哪些生命周期"><span class="toc-number">6.1.</span> <span class="toc-text">Vue第一次渲染会触发哪些生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue中DOM渲染是在那个钩子就已经完成了"><span class="toc-number">6.2.</span> <span class="toc-text">Vue中DOM渲染是在那个钩子就已经完成了</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue的生命周期有哪些"><span class="toc-number">6.3.</span> <span class="toc-text">Vue的生命周期有哪些</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue中computed和watch"><span class="toc-number">6.4.</span> <span class="toc-text">Vue中computed和watch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue中传递参数"><span class="toc-number">6.5.</span> <span class="toc-text">Vue中传递参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-if和v-show的区别"><span class="toc-number">6.6.</span> <span class="toc-text">v-if和v-show的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nextTtck的作用"><span class="toc-number">6.7.</span> <span class="toc-text">nextTtck的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue如何让CSS只在当前文件生效"><span class="toc-number">6.8.</span> <span class="toc-text">Vue如何让CSS只在当前文件生效</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vuex是干嘛的，有哪些主要对象"><span class="toc-number">6.9.</span> <span class="toc-text">Vuex是干嘛的，有哪些主要对象</span></a></li></ol></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png)"><div id="post-info"><div id="post-title"><div class="posttitle">前端面试刷题优化</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2020-07-20<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2020-07-21</time><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><h3 id="HTML语义化的作用"><a href="#HTML语义化的作用" class="headerlink" title="HTML语义化的作用"></a>HTML语义化的作用</h3><p>正确的标签做正确的事情。让页面看起来更加结构化。利于SEO</p>
+<h3 id="H5的新特性"><a href="#H5的新特性" class="headerlink" title="H5的新特性"></a>H5的新特性</h3><ul>
+<li><p>语义化标签header，footer，nav，section</p>
+</li>
+<li><p>新特性的表单：time，email，date</p>
+</li>
+<li><p>新的媒体标签audio和video</p>
+</li>
+<li><p>canvas画布</p>
+</li>
+<li><p>新的协议：websocket</p>
+</li>
+<li><p>本例离线存储localStorage，sessionStorage </p>
+</li>
+</ul>
+<h4 id="localStorage和cookie的区别"><a href="#localStorage和cookie的区别" class="headerlink" title="localStorage和cookie的区别"></a>localStorage和cookie的区别</h4><ul>
+<li>localStorage存储比cookie大</li>
+</ul>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><h3 id="CSS盒模型"><a href="#CSS盒模型" class="headerlink" title="CSS盒模型"></a>CSS盒模型</h3><p>盒模型分为两种：</p>
+<ol>
+<li><p>W3C标准盒模型，他的<code>width</code>和<code>height</code>只包含<code>content</code>，不包括<code>border</code>和<code>padding</code></p>
+</li>
+<li><p>IE盒模型，他的<code>width</code>和<code>height</code>是包括了<code>content</code>和<code>padding</code>和<code>border</code></p>
+</li>
+</ol>
+<h4 id="那么有没有办法让其进行统一呢"><a href="#那么有没有办法让其进行统一呢" class="headerlink" title="那么有没有办法让其进行统一呢"></a>那么有没有办法让其进行统一呢</h4><ol>
+<li>声明<code>DOCTYPE</code></li>
+<li>使用CSS属性<code>box-sizing:border-box</code></li>
+</ol>
+<h3 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h3><p>BFC（块级可视化上下文），规定了文档中盒子与盒子之间的关系</p>
+<p>触发BFC的条件：</p>
+<ol>
+<li>float不为none</li>
+<li>position为absolute或者fixed</li>
+<li>overflow不为visible</li>
+</ol>
+<p>BFC的作用：</p>
+<ol>
+<li>解决margin塌陷的问题</li>
+<li>清除浮动</li>
+</ol>
+<h3 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h3><p>标签选择器，id选择器，类选择器，伪类选择器，兄弟选择器，后代选择器，属性选择器</p>
+<h3 id="CSS3有哪些新特性"><a href="#CSS3有哪些新特性" class="headerlink" title="CSS3有哪些新特性"></a>CSS3有哪些新特性</h3><ul>
+<li>新增各种CSS选择器</li>
+<li>圆角<code>border-radius</code></li>
+<li>动画，transform</li>
+<li>伪类：<ul>
+<li>first-of-type</li>
+<li>last-of-type</li>
+<li>only-of-type</li>
+</ul>
+</li>
+</ul>
+<h3 id="relative和absolute的区别"><a href="#relative和absolute的区别" class="headerlink" title="relative和absolute的区别"></a>relative和absolute的区别</h3><p>relative是根据自身定位</p>
+<p>absolute是根据带有定位的父元素进行定位，若父元都没有定位，则以body为准</p>
+<h3 id="Sass是什么"><a href="#Sass是什么" class="headerlink" title="Sass是什么"></a>Sass是什么</h3><p>Sass是CSS的预处理语言，他能用来清晰的，结构化的描述文件样式，比普通CSS更加强大</p>
+<h4 id="Sass有什么功能"><a href="#Sass有什么功能" class="headerlink" title="Sass有什么功能"></a>Sass有什么功能</h4><ul>
+<li>嵌套</li>
+<li>定义变量</li>
+<li>函数</li>
+<li>计算</li>
+<li>继承</li>
+<li>Mixin</li>
+<li>颜色函数</li>
+</ul>
+<h3 id="flex，grid布局是什么"><a href="#flex，grid布局是什么" class="headerlink" title="flex，grid布局是什么"></a>flex，grid布局是什么</h3><ul>
+<li><p>flex布局就是我们称之为的弹性布局，他是以轴为主的布局方式</p>
+</li>
+<li><p>gird布局就是我们称之为的网格布局，他是以行和列为主的布局方式</p>
+</li>
+</ul>
+<h2 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h2><h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>闭包指的就是，<strong>有权访问其他函数内部变量的函数</strong></p>
+<h4 id="闭包的作用"><a href="#闭包的作用" class="headerlink" title="闭包的作用"></a>闭包的作用</h4><p>隐藏变量，延长作用域</p>
+<h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><p>原型链就是当我们去访问一个对象上的属性或者是方法的时候，如果该对象本身没有这个方法或者是属性，则他就会从他的原型链上找，一直找到Object对象</p>
+<h3 id="AJAX是用来做什么的"><a href="#AJAX是用来做什么的" class="headerlink" title="AJAX是用来做什么的"></a>AJAX是用来做什么的</h3><p>AJAX用来异步的请求数据的，做到页面不刷新也能跟新网页</p>
+<h4 id="AJAX有几种请求方式（追问）"><a href="#AJAX有几种请求方式（追问）" class="headerlink" title="AJAX有几种请求方式（追问）"></a>AJAX有几种请求方式（追问）</h4><ul>
+<li><p>get：主要用于请求数据</p>
+</li>
+<li><p>post：主要用于提交数据</p>
+</li>
+<li><p>delete：主要用于删除服务器上的某些数据</p>
+</li>
+<li><p>put：</p>
+</li>
+<li><p>options：用来查看当前URL支持的请求方式</p>
+</li>
+<li><p>head：用来请求HTTP头部</p>
+</li>
+</ul>
+<p>也就是说，如果是更新，并不会产生新的数据，新的数据会覆盖老的数据，用put，如果是创建，会产生新的数据，则用post</p>
+<h4 id="get和post有什么区别"><a href="#get和post有什么区别" class="headerlink" title="get和post有什么区别"></a>get和post有什么区别</h4><ol>
+<li>get会把提交的数据放在url地址栏中，post提交数据会放在请求体内，会比get安全</li>
+<li>Get传输的数据量小，主要是因为它受约于URL长度的限制，而Post可以传输大量的数据，所以我们在传文件的时候会用Post</li>
+</ol>
+<h3 id="this的指向"><a href="#this的指向" class="headerlink" title="this的指向"></a>this的指向</h3><p>this指向的是事件的直接调用者</p>
+<p>如果是在全局下调用this则指向的是window，如果是严格模式下，那么指向的是undefined</p>
+<h4 id="改变this的指向"><a href="#改变this的指向" class="headerlink" title="改变this的指向"></a>改变this的指向</h4><ol>
+<li><p>我们可以通过箭头函数的方式将this指向当前作用域</p>
+</li>
+<li><p>我们可以通过new关键字来改变this的指向</p>
+</li>
+<li><p>我们可以通过call，apply，bind三个方法来改变this的指向</p>
+</li>
+</ol>
+<h4 id="call，apply，bind的区别"><a href="#call，apply，bind的区别" class="headerlink" title="call，apply，bind的区别"></a>call，apply，bind的区别</h4><ol>
+<li><p>当使用call，apply时会调用，bind则不会</p>
+</li>
+<li><p>apply第二个参数传入的是数组</p>
+</li>
+</ol>
+<h3 id="兼容性问题"><a href="#兼容性问题" class="headerlink" title="兼容性问题"></a>兼容性问题</h3><ol>
+<li><p>IE低版本要拿到事件的<code>event</code>对象需要通过<code>window.event</code>对象来获取</p>
+</li>
+<li></li>
+</ol>
+<h3 id="ES6有哪些新特性"><a href="#ES6有哪些新特性" class="headerlink" title="ES6有哪些新特性"></a>ES6有哪些新特性</h3><ul>
+<li>箭头函数，函数参数的默认值</li>
+<li>字符串模板</li>
+<li>promise</li>
+<li>新定义变量的方法let，const</li>
+<li>新增数组方法some，every</li>
+<li>结构赋值</li>
+<li>展开运算符</li>
+<li>定义类的新关键字class</li>
+</ul>
+<h3 id="let和const和var的区别"><a href="#let和const和var的区别" class="headerlink" title="let和const和var的区别"></a>let和const和var的区别</h3><ul>
+<li>const定义是常量</li>
+<li>没有变量提升</li>
+<li></li>
+</ul>
+<h3 id="事件模型（事件流）"><a href="#事件模型（事件流）" class="headerlink" title="事件模型（事件流）"></a>事件模型（事件流）</h3><p>主要分为两种：</p>
+<ul>
+<li>冒泡：冒泡是从被触发元素一直冒泡到根元素</li>
+<li>捕获：捕获是从根元素一直触发到目标元素</li>
+</ul>
+<h3 id="如何解决跨域问题"><a href="#如何解决跨域问题" class="headerlink" title="如何解决跨域问题"></a>如何解决跨域问题</h3><p>通过JSONP跨域</p>
+<p>通过CORS跨域，CORS跨域需要浏览器和服务器同时支持才可以</p>
+<h4 id="JSONP是如何做到跨域"><a href="#JSONP是如何做到跨域" class="headerlink" title="JSONP是如何做到跨域"></a>JSONP是如何做到跨域</h4><ol>
+<li>首先他会动态的创建一个script</li>
+<li>将script标签里的src属性指向与需要跨域的地址</li>
+<li>我们定义一个同样名字的回调函数</li>
+<li>从回调函数中获取相应的数据即可</li>
+</ol>
+<h3 id="节流防抖"><a href="#节流防抖" class="headerlink" title="节流防抖"></a>节流防抖</h3><p>防抖是为了防止事件一直触发</p>
+<p>节流是以一个时间段为基准的</p>
+<ul>
+<li>节流就是在一个时间内只能触发一次，如果这段时间内多次触发函数，则只生效一次</li>
+</ul>
+<ul>
+<li><p>防抖就是在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时。</p>
+<ul>
+<li>也就是说多次触发以最后一次为准</li>
+</ul>
+</li>
+</ul>
+<p>应用：百度搜索框</p>
+<h2 id="移动端"><a href="#移动端" class="headerlink" title="移动端"></a>移动端</h2><h3 id="移动端你们一般采用什么布局？移动端设计稿是多大的尺寸？"><a href="#移动端你们一般采用什么布局？移动端设计稿是多大的尺寸？" class="headerlink" title="移动端你们一般采用什么布局？移动端设计稿是多大的尺寸？"></a>移动端你们一般采用什么布局？移动端设计稿是多大的尺寸？</h3><ul>
+<li><p>定宽布局</p>
+</li>
+<li><p>一般移动端设计稿是640或者750的尺寸</p>
+</li>
+</ul>
+<h3 id="移动端的适配"><a href="#移动端的适配" class="headerlink" title="移动端的适配"></a>移动端的适配</h3><ol>
+<li>我们可以通过<code>rem</code>来作为单位进行布局<ul>
+<li>1rem = HTML标签下font-size的大小</li>
+<li>使用rem可以配合一个第三方的库来进行适配<code>flexible.js</code></li>
+</ul>
+</li>
+<li>我们可以通过百分比布局+CSS3中的媒体查询功能来进行适配</li>
+</ol>
+<h3 id="rem和em的区别"><a href="#rem和em的区别" class="headerlink" title="rem和em的区别"></a>rem和em的区别</h3><ul>
+<li><p>em是相对于父元素的font-size来决定的</p>
+</li>
+<li><p>rem是由html标签的font-size来决定的</p>
+</li>
+</ul>
+<h3 id="为什么会有300ms的延迟"><a href="#为什么会有300ms的延迟" class="headerlink" title="为什么会有300ms的延迟"></a>为什么会有300ms的延迟</h3><h3 id="移动端怎么固定横屏显示？"><a href="#移动端怎么固定横屏显示？" class="headerlink" title="移动端怎么固定横屏显示？"></a>移动端怎么固定横屏显示？</h3><p> 检测手机竖屏的时候，元素给元素添加90deg的旋转</p>
+<p>检测手机横屏的时候，元素给元素的旋转再改为0</p>
+<h2 id="Jquery"><a href="#Jquery" class="headerlink" title="Jquery"></a>Jquery</h2><h2 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h2><h3 id="Vue第一次渲染会触发哪些生命周期"><a href="#Vue第一次渲染会触发哪些生命周期" class="headerlink" title="Vue第一次渲染会触发哪些生命周期"></a>Vue第一次渲染会触发哪些生命周期</h3><ul>
+<li>beforeCreate</li>
+<li>created </li>
+<li>beforeMount</li>
+<li>mounted</li>
+</ul>
+<h3 id="Vue中DOM渲染是在那个钩子就已经完成了"><a href="#Vue中DOM渲染是在那个钩子就已经完成了" class="headerlink" title="Vue中DOM渲染是在那个钩子就已经完成了"></a>Vue中DOM渲染是在那个钩子就已经完成了</h3><ul>
+<li>beforeMount：在这一步的时候模板已经编译好，但是害没有挂载到页面上</li>
+<li>mounted：这一步才将模板挂载到页面上，才能开始操作DOM</li>
+</ul>
+<p>这题的陷阱，两个都给他答上即可</p>
+<h3 id="Vue的生命周期有哪些"><a href="#Vue的生命周期有哪些" class="headerlink" title="Vue的生命周期有哪些"></a>Vue的生命周期有哪些</h3><ul>
+<li><p>beforeCreate</p>
+</li>
+<li><p>created </p>
+</li>
+<li><p>beforeMount：在这一步的时候模板已经编译好，但是害没有挂载到页面上</p>
+</li>
+<li><p>mounted：这一步才将模板挂载到页面上，才能开始操作DOM</p>
+</li>
+<li><p>beforeUpdate</p>
+</li>
+<li><p>updated</p>
+</li>
+<li><p>beforeDestory</p>
+</li>
+<li><p>destoryed</p>
+</li>
+</ul>
+<h3 id="Vue中computed和watch"><a href="#Vue中computed和watch" class="headerlink" title="Vue中computed和watch"></a>Vue中computed和watch</h3><ul>
+<li><p>computed是是计算属性，主要就是对数据的一些过滤和包装</p>
+</li>
+<li><p>watch是对数据监听，数据发生变化触发相对应的事件</p>
+</li>
+</ul>
+<h3 id="Vue中传递参数"><a href="#Vue中传递参数" class="headerlink" title="Vue中传递参数"></a>Vue中传递参数</h3><ul>
+<li><p>父组件向子组件传递参数，在子组件以一个属性绑定进去就可以了</p>
+</li>
+<li><p>父组件绑定一个方法，子组件通过<code>this.$emit</code>来向父组件从传值</p>
+</li>
+<li><p>兄弟组件传值</p>
+</li>
+</ul>
+<h3 id="v-if和v-show的区别"><a href="#v-if和v-show的区别" class="headerlink" title="v-if和v-show的区别"></a>v-if和v-show的区别</h3><ul>
+<li>v-show是控制元素上的display属性来做到隐藏和显示</li>
+<li>v-if是把元素从DOM树里删除和添加做到的显示和隐藏</li>
+</ul>
+<p>如果一个元素需要频繁的切换，那么就是用v-show</p>
+<h3 id="nextTtck的作用"><a href="#nextTtck的作用" class="headerlink" title="nextTtck的作用"></a>nextTtck的作用</h3><p>就是把该回调函数中，放到下一次DOM更新时调用。</p>
+<p>如果想在created生命周期中操作DOM，那么久可以放在该函数（不推荐）</p>
+<h3 id="Vue如何让CSS只在当前文件生效"><a href="#Vue如何让CSS只在当前文件生效" class="headerlink" title="Vue如何让CSS只在当前文件生效"></a>Vue如何让CSS只在当前文件生效</h3><p>可以通过Vue文件中的style标签添加scoped属性</p>
+<h3 id="Vuex是干嘛的，有哪些主要对象"><a href="#Vuex是干嘛的，有哪些主要对象" class="headerlink" title="Vuex是干嘛的，有哪些主要对象"></a>Vuex是干嘛的，有哪些主要对象</h3><p>Vuex使用来对vue项目进行统一的数据管理</p>
+<p>Vuex是Vue的</p>
+<ul>
+<li>state：存放数据的</li>
+<li>Getter：Vuex里的计算属性</li>
+<li>Mutation：修改状态的</li>
+<li>Action：异步的修改状态</li>
+<li>Module：模块化</li>
+</ul>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">青空</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://gitee.com/AIR-ZRB/blog/2020/07/20/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E5%88%B7%E9%A2%98%E4%BC%98%E5%8C%96/">https://gitee.com/AIR-ZRB/blog/2020/07/20/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E5%88%B7%E9%A2%98%E4%BC%98%E5%8C%96/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://gitee.com/AIR-ZRB/blog">青空</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-button button--primary button--animated"> <i class="fa fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lazyload post-qr-code__img" src="/blog/null" alt="微信"><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lazyload post-qr-code__img" src="/blog/null" alt="支付寶"><div class="post-qr-code__desc">支付寶</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="/blog/2020/06/27/ReactNative-ReactNavigation/"><img class="next_cover lazyload" data-src="https://img1.gamersky.com/upimg/users/2020/06/18/origin_202006180915583257.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>ReactNative-ReactNavigation</span></div></a></div></nav></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2020 By 青空</div><div class="framework-info"><span>驱动 </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="/blog/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script></body></html>
